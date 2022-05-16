@@ -3,5 +3,46 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-    <div>Hello Home</div>
+
+    <div class="mt-5 row">
+{#      Rubrique Main Gamelist#}
+        <div class="row col-9 justify-content-center ms-2 gap-5 ">
+            <h1 class="text-center">Gamelist</h1>
+            <h4 class="text-center"> List- Game.Category selected</h4>
+            {% for game in games %}
+                <div class="row col-3 text-center justify-content-center card">
+                    <div>{{ game.name }}</div>
+                    <div><img src="/image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg" alt="template" ></div>
+                    <div class="mt-3 mb-3 row justify-content-between">
+                        <div class="col-6"><a class="btn btn-outline-success" href="{{ path('home') }}">Play</a></div>
+                        <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_game_show', {id: game.id}) }}">Detail</a></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{#      Début de Sidebar #}
+        <div class="col-3">
+            <div class="ps-3 card" >
+                {#                Filtre par catégorie#}
+                <h5>Filtre par Categorie</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Tous les jeux
+                    </label>
+                </div>
+                {% for game in games %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            {{ game.category }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            {#            Carousel#}
+            {% include "components/carousel.html.twig" %}
+{#      Fin de la  Sidebar #}
+        </div>
+    </div>
 {% endblock %}

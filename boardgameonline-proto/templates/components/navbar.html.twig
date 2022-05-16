@@ -1,0 +1,52 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}Navbar{% endblock %} #}
+
+{% block menu %}
+    <div class="fixed-top sticky-sm-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {% if app.user %}
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_game_favorite') }}">Jeux favoris</a>
+                            </li>
+                            <li class="nav-item">
+                                {#                        {{ path('') }} #}
+                                <a class="nav-link" href="#">Partie en cours</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    {#                SearchBar #}
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Rechercher un jeu"
+                               aria-label="Search">
+                        <button class="me-5 btn btn-outline-success" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    {% if app.user == false %}
+
+                        <a class="me-3 btn btn-outline-success" href="{{ path('app_login') }}">Connexion</a>
+                        <a class="btn btn-outline-success" href="{{ path('app_register') }}">Inscription</a>
+
+                    {% else %}
+                        <div class="me-3">Login: <a href="{{ path('app_user') }}">{{ app.user.username }}</a></div>
+                        <a class="btn btn-outline-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+{% endblock %}

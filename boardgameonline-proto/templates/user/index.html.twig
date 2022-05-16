@@ -3,7 +3,27 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<div>
-    User interface
-</div>
+    <div class="mt-5 container-md border">
+        <div class="row" style="width: 42rem;">
+            <div class="mt-5 ms-5 mb-5 col-6 bg-dark text-center text-light" style="width: 200px; height: 200px">
+            </div>
+            <div class="mt-5 ms-5 col-6">
+                <p>Username</p>
+                <p>Username.info</p>
+                <p>Username.info</p>
+                <p>Username.info</p>
+                <div class="row justify-content-around">
+                    <div class="col-5">
+                        <button class="btn btn-primary">Voir la liste d'amis</button>
+                    </div>
+                    <div class="col-5">
+                        <label for="name">Ajouter un ami:</label>
+                        <input type="text" id="name" name="name"
+                               minlength="4" maxlength="255" size="10" style="width: 400px">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

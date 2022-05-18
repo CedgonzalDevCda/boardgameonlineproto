@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Friend index{% endblock %}
+
+{% block body %}
+    <h1 class="mt-5 text-center">Liste d'amis</h1>
+
+    <div class="row justify-content-center">
+        <a class="mt-5 mb-4 btn btn-primary w-25" href="{{ path('app_friend_new') }}">Ajouter un ami</a>
+        {% for friend in friends %}
+            <div class="row row-cols-1 row-cols-md-3 justify-content-center g-1">
+                <div class="col">
+                    <div class="card position-relative ">
+{#                        <img class="position-absolute top-0 start-0 mh-100" src="../image/w64_h64_Image_Avatar.png"#}
+{#                             alt="..." width="80px" height="80px">#}
+                        <div class="mt-2 mb-2 row justify-content-evenly align-items-center">
+                            <div class="col-8">
+                            <h5 class="card-title">{{ friend.name }}</h5>
+                            <p class="card-text">E-mail: {{ friend.email }}</p>
+                            </div>
+                            <div class="row col-4 justify-content-between">
+                                <div class="col-6 text-center">
+                                    <a href="{{ path('app_friend_edit', {'id': friend.id}) }}"
+                                       class="btn btn-primary card-text text-center"><i class="fa-solid fa-pencil"></i></a>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <a href="{{ path('app_friend_delete', {'id': friend.id}) }}"
+                                       class="btn btn-danger card-text text-center"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>Go invite tes amis pour jouer à des parties</p>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

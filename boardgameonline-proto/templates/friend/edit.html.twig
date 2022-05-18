@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier du profil amis{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center mx-auto">
+        <h1 class="text-center">Modification infos amis</h1>
+
+        <div>
+        {{ include('friend/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        </div>
+        <a href="{{ path('app_friend_index') }}">Retour à la liste d'amis</a>
+    </div>
+{% endblock %}

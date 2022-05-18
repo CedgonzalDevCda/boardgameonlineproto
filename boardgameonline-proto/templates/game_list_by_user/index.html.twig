@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GameListByUserController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center">Liste des jeux favoris</h1>
+    <div>
+    {% for game in games %}
+        {% if game.isUserFavorite(app.user)%}
+            <div class="row align-items-center border mb-5">
+                <div class="col-4"><img src="/image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg" alt="template" ></div>
+                <div class="col-4 fs-4">{{ game.name }}</div>
+                <div class="col-4"><a href="{{ path('app_game_favorite', {id: game.id}) }}" class="btn btn-outline-danger">Supprimer des
+                        favoris</a>
+                </div>
+            </div>
+
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

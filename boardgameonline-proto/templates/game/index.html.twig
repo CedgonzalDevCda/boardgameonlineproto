@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game index{% endblock %}
+
+{% block body %}
+    <h1>Game index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IsVisible</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Rules</th>
+                <th>RuleVersion</th>
+                <th>MinPlayer</th>
+                <th>MaxPlayer</th>
+                <th>Age</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>OnlineVersion</th>
+                <th>Favoris</th>
+                <th>DateCreation</th>
+                <th>DateLastUpdate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{ game.id }}</td>
+                <td>{{ game.isVisible ? 'Yes' : 'No' }}</td>
+                <td>{{ game.name }}</td>
+                <td>{{ game.category }}</td>
+                <td>{{ game.rules }}</td>
+                <td>{{ game.ruleVersion }}</td>
+                <td>{{ game.minPlayer }}</td>
+                <td>{{ game.maxPlayer }}</td>
+                <td>{{ game.age }}</td>
+                <td>{{ game.image }}</td>
+                <td>{{ game.description }}</td>
+                <td>{{ game.onlineVersion }}</td>
+                <td>{{ game.favoris ? 'Yes' : 'No' }}</td>
+                <td>{{ game.dateCreation ? game.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ game.dateLastUpdate ? game.dateLastUpdate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_game_show', {'id': game.id}) }}">show</a>
+                    <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_game_new') }}">Create new</a>
+{% endblock %}

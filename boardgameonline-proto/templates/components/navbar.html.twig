@@ -19,7 +19,9 @@
                                 <a class="nav-link" href="{{ path('app_game_favorite') }}">Jeux favoris</a>
                             </li>
                             <li class="nav-item">
-                                {#                        {{ path('') }} #}
+                                <a class="nav-link" href="{{ path('app_friend_index') }}">Liste d'amis</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#">Partie en cours</a>
                             </li>
                         </ul>
@@ -37,7 +39,6 @@
                     </form>
 
                     {% if app.user == false %}
-
                         <a class="me-3 btn btn-outline-success" href="{{ path('app_login') }}">Connexion</a>
                         <a class="btn btn-outline-success" href="{{ path('app_register') }}">Inscription</a>
 

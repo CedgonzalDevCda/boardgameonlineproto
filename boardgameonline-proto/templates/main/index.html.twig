@@ -14,8 +14,12 @@
                     <div>{{ game.name }}</div>
                     <div><img src="/image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg" alt="template" ></div>
                     <div class="mt-3 mb-3 row justify-content-between">
-                        <div class="col-6"><a class="btn btn-outline-success" href="{{ path('home') }}">Play</a></div>
-                        <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_game_show', {id: game.id}) }}">Detail</a></div>
+                        {% if app.user == false %}
+                            <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_login') }}">Play</a></div>
+                        {% else %}
+                            <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_login') }}">Play</a></div>
+                            <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_game_show', {id: game.id}) }}">Detail</a></div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

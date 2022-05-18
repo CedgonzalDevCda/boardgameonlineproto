@@ -6,10 +6,12 @@ use App\Entity\Game;
 use App\Entity\GameListByUser;
 use App\Entity\UserListByEvents;
 use App\Form\GameType;
+use App\Repository\CategoryRepository;
 use App\Repository\GameListByUserRepository;
 use App\Repository\GameRepository;
 use App\Repository\UserListByEventsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -80,7 +82,9 @@ class GameController extends AbstractController
 
         return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
     }
+
     #[Route('/{id}/subscribe', name: 'app_game_signup', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function subscribe(EntityManagerInterface $manager, Game $game, GameListByUserRepository $gameListByUserRepository): Response
     {
         $user = $this->getUser();

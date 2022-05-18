@@ -61,10 +61,14 @@ class Game
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'games')]
     private $category;
 
+    #[ORM\OneToMany(mappedBy: 'games', targetEntity: Gameroom::class)]
+    private $gamerooms;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->gameListByUsers = new ArrayCollection();
+        $this->gamerooms = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -309,6 +313,36 @@ class Game
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gameroom>
+     */
+    public function getGamerooms(): Collection
+    {
+        return $this->gamerooms;
+    }
+
+    public function addGameroom(Gameroom $gameroom): self
+    {
+        if (!$this->gamerooms->contains($gameroom)) {
+            $this->gamerooms[] = $gameroom;
+            $gameroom->setGames($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGameroom(Gameroom $gameroom): self
+    {
+        if ($this->gamerooms->removeElement($gameroom)) {
+            // set the owning side to null (unless already changed)
+            if ($gameroom->getGames() === $this) {
+                $gameroom->setGames(null);
+            }
+        }
 
         return $this;
     }

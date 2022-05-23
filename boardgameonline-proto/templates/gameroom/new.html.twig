@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Gameroom{% endblock %}
+
+{% block body %}
+    <h1>Create new Gameroom</h1>
+
+    {{ include('gameroom/_form.html.twig') }}
+
+    <a href="{{ path('app_gameroom_index') }}">back to list</a>
+{% endblock %}

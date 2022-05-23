@@ -87,4 +87,12 @@ class Friend
 
         return $this;
     }
+
+    public function isUserFriendsLists (?User $user):bool
+    {
+        foreach($this->friendsLists as $friendsLists){
+            if($friendsLists->getUsers() === $user) return true;
+        }
+        return false;
+    }
 }

@@ -4,12 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\GameListByUser;
-use App\Entity\UserListByEvents;
 use App\Form\GameType;
 use App\Repository\CategoryRepository;
 use App\Repository\GameListByUserRepository;
 use App\Repository\GameRepository;
-use App\Repository\UserListByEventsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

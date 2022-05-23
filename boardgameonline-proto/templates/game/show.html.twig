@@ -3,10 +3,11 @@
 {% block title %}Game{% endblock %}
 
 {% block body %}
-<div class="row justify-content-between text-center">
-    <div class="col-md-6 ms-auto"><a href="{{ path('app_game_index') }}">Back to list</a></div>
-    <div class="col-md-6"><a href="{{ path('app_game_edit', {'id': game.id}) }}">Edit</a></div>
-</div>
+<!-- champ de mise à jour pour l'auteur -->
+{#<div class="row justify-content-between text-center">#}
+{#    <div class="col-md-6 ms-auto"><a href="{{ path('app_game_index') }}">Back to list</a></div>#}
+{#    <div class="col-md-6"><a href="{{ path('app_game_edit', {'id': game.id}) }}">Edit</a></div>#}
+{#</div>#}
 <p class="mt-2 text-center fs-3">[  game.category to update by category.name ]</p>
 
 
@@ -27,11 +28,13 @@
                 <div class="col-5">DateLastUpdate</div>
                 <div class="col-5">{{ game.dateLastUpdate ? game.dateLastUpdate|date('Y-m-d H:i') : '' }}</div>
             </div>
-            {#                    Ajouter l'option des favoris #}
+
             <div class="row justify-content-around">
+                {#                    Lancer une partie #}
                 <div class="col-4">
-                    <a href="{{ path('home') }}" class="btn btn-outline-success">Lancer une partie</a>
+                    <a href="{{ path('app_gameroom_index') }}" class="btn btn-outline-success">Lancer une partie</a>
                 </div>
+                {#                    Ajouter l'option des favoris #}
                 {% if game.isUserFavorite(app.user) == false%}
                 <div class="col-4">
                     <a href="{{ path('app_game_signup', {id: game.id}) }}" class="btn btn-outline-success">Ajouter aux
@@ -128,12 +131,5 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-    {{ include('game/_delete_form.html.twig') }}
 
     {% endblock %}

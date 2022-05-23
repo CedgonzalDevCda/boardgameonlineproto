@@ -297,7 +297,7 @@ class Game
      * @param User $user
      * @return boolean
      */
-    public function isUserFavorite (User $user):bool
+    public function isUserFavorite (?User $user):bool
     {
         foreach($this->gameListByUsers as $gameListByUsers){
             if($gameListByUsers->getUsers() === $user) return true;

@@ -113,24 +113,7 @@ const addTask = () => {
     displayTasks();
     displayToast('La tâche a bien été ajoutée', 'ajout');
 
-    //test fetch POST sur jsonplaceholder
-    let promise01 = fetch("https://jsonplaceholder.typicode.com/users", {
-        method: "POST",
-        body: JSON.stringify(testFetch),
-        headers: {
-            "Content-Type": "application/json"
-        },
-    });
 
-    promise01.then(async (response) => {
-        try{
-            console.log(response);
-            const contenu = await response.json();
-            console.log(contenu);
-        } catch (e) {
-            console.log(e);
-        }
-    });
 };
 
 //Fonction pour enlever une tache
@@ -220,11 +203,32 @@ button.onclick = addTask;
 
 console.log(taches);
 
-// console.log(promise01);
+// Lancer les invitations depuis la page
 
+let buttonInvit = document.getElementById("btn-invit")
 
-taches.forEach((tache, key) => {
-    if (tache.id == event.target.dataset.id) {
-        index = key;
-    }
-});
+const launchInvit = () => {
+    taches.forEach((tache, key) => {
+
+        //test fetch POST sur jsonplaceholder
+        let promise01 = fetch("https://jsonplaceholder.typicode.com/users", {
+            method: "POST",
+            body: JSON.stringify(tache),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+
+        promise01.then(async (response) => {
+            try{
+                console.log(response);
+                const contenu = await response.json();
+                console.log(contenu);
+            } catch (e) {
+                console.log(e);
+            }
+        });
+    });
+}
+
+buttonInvit.addEventListener("click", launchInvit);

@@ -11,20 +11,9 @@
     <div class="mt-5 ms-5 fs-2 card text-center">Game.name </div>
 
     <div id="toast"></div>
-    <input type="checkbox" name="" id="" />
-    <div id="taches-container" class="row mt-5 justify-content-around"></div>
+{#    <input type="checkbox" name="" id="" />#}
+    <div id="taches-container" class="row mt-5 justify-content-around" name="data-test"></div>
     <div class="mt-3 row justify-content-around">
-
-        <!-- activePlayer -->
-{#        <div class="mt-3 ms-5 mx-0 bg-secondary.bg-gradient row justify-content-center align-items-center card w-50" style="border-radius: 50px;">#}
-{#            <div class="px-2 py-2 col-12 row justify-content-center align-items-center">#}
-{#                <div class="col-2"><img class="rounded-circle" style="width: 50px; height: 50px;"#}
-{#                                        src="../image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"></div>#}
-{#                <div class="col-9">Me</div>#}
-{#                <div class="col-1 btn btn-outline-primary" style="width:40px;height: 40px;"><i class="fa-solid fa-plus"></i></div>#}
-{#            </div>#}
-{#        </div>#}
-
 
         <!--sélectionner un ami-->
         <div class="mt-3 ms-5 row justify-content-center align-items-center card bg-primary w-50" style="border-radius: 50px;">
@@ -33,7 +22,7 @@
                                         src="../image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"></div>
                 <div class="col-8 row">
                     <div class="col-6">
-                        <select id="select-new-player" class="form-select " aria-label="Default select example">
+                        <select id="select-new-player" class="form-select" aria-label="Default select example">
                             <option selected>Sélectionner l'ami à inviter</option>
                             {% for friend in friends %}
                                 {% if friend.isUserFriendsLists(app.user) %}
@@ -49,42 +38,10 @@
             </div>
         </div>
 
-
-{#        <!-- En attente de réponse -->#}
-{#        <div class="mt-3 ms-5 row justify-content-center align-items-center card w-50 bg-warning " style="border-radius: 50px;">#}
-{#            <div class="px-2 py-2 col-12 row justify-content-center align-items-center">#}
-{#                <div class="col-2"><img class="rounded-circle" style="width: 50px; height: 50px;"#}
-{#                                        src="../image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"></div>#}
-{#                <div class="col-8 text-dark">PlayerName en attente de réponse <i class="fa-solid fa-paper-plane"></i></div>#}
-{#                <div class="col-1 btn btn-outline-light" style="width:40px;height: 40px;"><i class="fa-solid fa-paper-plane"></i></div>#}
-{#                <div class="ms-2 col-1 btn btn-outline-light" style="width:40px;height: 40px;"><i class="fa-solid fa-xmark"></i></div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <!-- Le joueur a acceptée l'invitation -->#}
-{#        <div class="mt-3 ms-5 row justify-content-center align-items-center card w-50 bg-success" style="border-radius: 50px;">#}
-{#            <div class="px-2 py-2 col-12 row justify-content-center align-items-center">#}
-{#                <div class="col-2"><img class="rounded-circle" style="width: 50px; height: 50px;"#}
-{#                                        src="../image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"></div>#}
-{#                <div class="col-8 text-light">PlayerName a accepté l'invitation</div>#}
-{#                <div class="col-1 btn btn-outline-light" style="width:40px;height: 40px;"><i class="fa-solid fa-check"></i></div>#}
-{#                <div class="ms-2 col-1 btn btn-outline-light" style="width:40px;height: 40px;"><i class="fa-solid fa-xmark"></i></div>#}
-
-{#            </div>#}
-{#        </div>#}
-
-{#        <!-- Le joueur a refusé l'invitation -->#}
-{#        <div class="mt-3 ms-5 row justify-content-center align-items-center card w-50 bg-danger" style="border-radius: 50px;">#}
-{#            <div class="px-2 py-2 col-12 row">#}
-{#                <div class="col-2"><img class="rounded-circle" style="width: 50px; height: 50px;"#}
-{#                                        src="../image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"></div>#}
-{#                <div class="col-9 text-light">PlayerName a refusé l'invitation</div>#}
-{#                <div class="col-1 btn btn-outline-light" style="width:40px;height: 40px;"><i class="fa-solid fa-xmark"></i></div>#}
-{#            </div>#}
-{#        </div>#}
         <!-- Commande pour lancement de partie-->
         <div class="row mt-4 justify-content-around w-50">
-            <div class="col-4 btn"><a href="#lauch-invitation" class="btn btn-primary">Lancer les invitations</a></div>
-            <div class="col-4 btn"><a href="{{ path('app_gameroom_new') }}" class="btn btn-outline-success">Lancer la partie</a></div>
+            <div id="btn-invit" class="col-4 btn"><a href="#launch-invitation" class="btn btn-primary">Lancer les invitations</a></div>
+            <div class="col-4 btn"><a href="{{ path('app_gameroom_new') }}" class="btn btn-outline-danger">Lancer la partie</a></div>
             <div class="col-4 btn"><a href="{{ path('home') }}" class="btn btn-outline-danger">Annuler</a></div>
         </div>
     </div>

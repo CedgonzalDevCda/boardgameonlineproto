@@ -1,4 +1,3 @@
-
 const section = document.querySelector('#taches-container');
 const input = document.querySelector('#select-new-player');
 const check = document.querySelector('input[type="checkbox"]');
@@ -7,13 +6,12 @@ const toast = document.querySelector('#toast');
 var count = 3; //Nombre de players
 
 
-
 // txt -> playerName
 // urgent -> favori
 // id ->
 // taches -> playersList
 
-//Liste de joueurs définie par défaut
+// Liste de joueurs définie par défaut
 let taches = [
     {
         txt: 'Player 1 - favori',
@@ -29,19 +27,12 @@ let taches = [
     },
 ];
 
-// A supprimer
-// const test = () => {
-//     let selectedPlayer = document.getElementById("select-new-player").options[document.getElementById('select-new-player').selectedIndex].text;
-//     displayToast(`Joueur ${selectedPlayer} sélectionné`, 'ajout');
-// }
 
-// input.addEventListener("change", test);
-
-//Afficher la petite fenetre en haut à droite pour confirmer l'action effectuée
+// Afficher la petite fenetre en haut à droite pour confirmer l'action effectuée
 const displayToast = (message, type) => {
     toast.innerHTML = message; // Modification du message du toast
 
-    //Applique une couleur en fonction de l'action
+    // Applique une couleur en fonction de l'action
     switch (type) {
         case 'suppression':
             toast.style.color = '#fafafa';
@@ -59,14 +50,14 @@ const displayToast = (message, type) => {
 
     toast.style.transform = 'translate3d(0,0,0)'; //Affiche le toast
 
-    //programmation de la disparition du toast 4s après son arrivée
+    // Programmation de la disparition du toast 4s après son arrivée
     setTimeout(() => {
         toast.style.transform = 'translate3d(0,-100%,0)';
         toast.style.color = 'transparent';
     }, 4000);
 };
 
-//Fonction qui ajoute un joueur à la playersList
+// Fonction qui ajoute un joueur à la playersList
 const addTask = () => {
     let selectedPlayer = document.getElementById("select-new-player").options[document.getElementById('select-new-player').selectedIndex].text;
     // si la sélection n'est pas celle d'origine
@@ -89,38 +80,21 @@ const addTask = () => {
         id: count,
     });
 
-
-    // Variable pour le fetch
-    let testFetch = [
-        {
-        name: input.value,
-        website: count
-        },
-        {
-            name: input.value,
-            website: count
-        },
-    ]
-    ;
-
-    //on trie le tableau en fonction des tâches urgentes
-    // taches.sort(taskSort);
-
     input.value = '';
     // check.checked = false;
 
-    //on met a jour l'affichage avec le nouveau tableau (complété et trié)
+    // on met a jour l'affichage avec le nouveau tableau (complété et trié)
     displayTasks();
     displayToast('La tâche a bien été ajoutée', 'ajout');
 
 
 };
 
-//Fonction pour enlever une tache
+// Fonction pour enlever une tache
 const removeTask = (event) => {
     let index = null;
 
-    //on cherche la tache qui correspond au bouton de suppression cliqué
+    // on cherche la tache qui correspond au bouton de suppression cliqué
     taches.forEach((tache, key) => {
         if (tache.id == event.target.id) {
             index = key;
@@ -133,14 +107,14 @@ const removeTask = (event) => {
     console.log(taches);
     count--;
 
-    //on met a jour l'affichage
+    // on met a jour l'affichage
     displayTasks();
     displayToast('La tâche a bien été supprimée', 'suppression');
 };
 
-//Fonction pour modifier l'intitulé d'une tache
+// Fonction pour modifier l'intitulé d'une tache
 const editTask = (event) => {
-    //on récupere le nouveau texte
+    // on récupere le nouveau texte
     let newText = window.prompt('Ecrivez la nouvelle valeur de la tâche');
     let index = null;
 
@@ -150,24 +124,24 @@ const editTask = (event) => {
         }
     });
 
-    //on met a jour le tableau
+    // on met a jour le tableau
     taches[index].txt = newText;
 
-    //on met a jour l'affichage
+    // on met a jour l'affichage
     displayTasks();
     displayToast('La tâche a bien été modifiée', 'modification');
 };
 
-//fonction pour mettre à jour l'affichage des taches sur la page
+// Fonction pour mettre à jour l'affichage de la liste de joueurs sur la page
 const displayTasks = () => {
     section.innerHTML = '';
 
-    //pour chaque élément du tableau, on crée la tache, ainsi que tous ses éléments
+    // pour chaque élément du tableau, on crée la tache, ainsi que tous ses éléments
     // d'affichage ou de fonctionnalités (boutons par ex.)
     taches.forEach((tache) => {
         let task = document.createElement('div');
         task.style.borderRadius = "50px"
-        task.classList.add('mt-3', 'ms-5', 'mx-0', 'bg-secondary.bg-gradient', 'row', 'justify-content-between', 'align-items-center', 'card', 'w-50');
+        task.classList.add('p-0', 'mt-3', 'ms-5', 'mx-0', 'bg-info', 'row', 'justify-content-between', 'align-items-center', 'card', 'w-50');
         let taskText = document.createElement('div');
         taskText.textContent = tache.txt;
 
@@ -196,24 +170,34 @@ const displayTasks = () => {
     });
 };
 
-//Affichage initial des taches.
+// Affichage initial des taches.
 displayTasks();
 
 button.onclick = addTask;
 
 console.log(taches);
 
-// Lancer les invitations depuis la page
 
+// Bouton Lancer les invitations
 let buttonInvit = document.getElementById("btn-invit")
 
+// Lancer les invitations depuis la page
 const launchInvit = () => {
-    taches.forEach((tache, key) => {
+    let invitationList = [];
 
+    taches.forEach((tache, key) => {
+        let playerName = tache.txt
+        let playerId = tache.id
+        invitationList.push({'playerName': playerName , 'playerId': playerId });
+    });
+
+    console.log(invitationList);
+
+    invitationList.forEach((playerInvit, key) => {
         //test fetch POST sur jsonplaceholder
         let promise01 = fetch("https://jsonplaceholder.typicode.com/users", {
             method: "POST",
-            body: JSON.stringify(tache),
+            body: JSON.stringify(playerInvit),
             headers: {
                 "Content-Type": "application/json"
             },
@@ -228,6 +212,7 @@ const launchInvit = () => {
                 console.log(e);
             }
         });
+
     });
 }
 

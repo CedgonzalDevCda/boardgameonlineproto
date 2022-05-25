@@ -3,9 +3,14 @@
 {% block title %}New Gameroom{% endblock %}
 
 {% block body %}
-    <h1>Create new Gameroom</h1>
+    <div class="container">
+        <h1>Récap lancement de partie</h1>
+        <div class="w-50 ">
+            {{ include('gameroom/_form.html.twig') }}
+        </div>
+        <div class="mt-4">
+            <a href="{{ path('app_gameroom_index') }}">Commencer la partie</a>
+        </div>
 
-    {{ include('gameroom/_form.html.twig') }}
-
-    <a href="{{ path('app_gameroom_index') }}">back to list</a>
+    </div>
 {% endblock %}

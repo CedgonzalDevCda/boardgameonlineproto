@@ -13,7 +13,10 @@ class GameroomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nbPlayer')
+            ->add('nbPlayer', [
+
+                ]
+            )
             ->add('dateInvit')
             ->add('hashInvit')
             ->add('hashTimeout')

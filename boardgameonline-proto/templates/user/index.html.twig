@@ -19,6 +19,7 @@
     <div class="mt-5 row justify-content-around">
         <div class="col-5">
             <a class="btn btn-primary" href="{{ path('app_friend_index') }}">Voir la liste d'amis</a>
+            <a class="btn btn-primary" href="{{ path('app_edit_password', {'id': app.user.id} ) }}">Modifier le mot de passe</a>
         </div>
     </div>
 {% endblock %}

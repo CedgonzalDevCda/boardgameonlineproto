@@ -9,8 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GameListByUserController extends AbstractController
 {
-    #[isGranted('ROLE_ADMIN')]
+    /**
+     * Affiche la liste des jeux favoris d'un utilisateur connecté
+     * @param GameRepository $gameRepository
+     * @return Response
+     */
+
     #[Route('/favoris', name: 'app_game_favorite')]
+    #[isGranted('ROLE_USER')]
     public function index(GameRepository $gameRepository): Response
     {
         return $this->render('game_list_by_user/index.html.twig', [

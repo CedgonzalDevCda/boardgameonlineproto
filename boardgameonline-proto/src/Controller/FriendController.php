@@ -17,6 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/friend')]
 class FriendController extends AbstractController
 {
+    /**
+     * Affiche la liste des amis d'un utilisateur
+     * @param FriendRepository $friendRepository
+     * @return Response
+     */
     #[Route('/', name: 'app_friend_index', methods: ['GET'])]
     public function index(FriendRepository $friendRepository): Response
     {
@@ -25,6 +30,13 @@ class FriendController extends AbstractController
         ]);
     }
 
+    /**
+     * Ajoute un ami à la liste des amis d'un utilisateur
+     * @param Request $request
+     * @param FriendRepository $friendRepository
+     * @param FriendsListRepository $friendsListRepository
+     * @return Response
+     */
     #[Route('/new', name: 'app_friend_new', methods: ['GET', 'POST'])]
     public function new(Request $request, FriendRepository $friendRepository, FriendsListRepository $friendsListRepository): Response
     {
@@ -54,6 +66,11 @@ class FriendController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche les informations associées à un ami
+     * @param Friend $friend
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_friend_show', methods: ['GET'])]
     public function show(Friend $friend): Response
     {
@@ -62,6 +79,13 @@ class FriendController extends AbstractController
         ]);
     }
 
+    /**
+     * Modifie les informations associées à un ami
+     * @param Request $request
+     * @param Friend $friend
+     * @param FriendRepository $friendRepository
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_friend_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Friend $friend, FriendRepository $friendRepository): Response
     {
@@ -80,6 +104,13 @@ class FriendController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime un ami de la liste des amis d'un utilisateur
+     * @param Request $request
+     * @param Friend $friend
+     * @param FriendRepository $friendRepository
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_friend_delete', methods: ['POST'])]
     public function delete(Request $request, Friend $friend, FriendRepository $friendRepository): Response
     {
@@ -90,51 +121,4 @@ class FriendController extends AbstractController
         return $this->redirectToRoute('app_friend_index', [], Response::HTTP_SEE_OTHER);
     }
 
-//    #[Route('/new', name: 'app_friend_new', methods: ['GET', 'POST'])]
-//    public function new(Request $request, FriendRepository $friendRepository, EntityManagerInterface $manager, FriendsListRepository $friendsListRepository): Response
-//    {
-//        // On crée une nouvelle instance Friend
-//        $friend = new Friend();
-//        // Création formulaire
-//        $form = $this->createForm(FriendType::class, $friend);
-//        //Envoi du formulaire
-//        $form->handleRequest($request);
-
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $friendRepository->add($friend, true);
-//
-//            return $this->redirectToRoute('app_friend_index', [], Response::HTTP_SEE_OTHER);
-//            $friendsList = new FriendsList();
-//            dump($friendsList);
-//
-//            $friendsListRepository->add($friendsList,true);
-            //
-//            $user = $this->getUser();
-//            if (!$user) return $this->redirectToRoute('app_login');
-//            if ($friend->isUserFriendsLists($user)) {
-//                $signedUp = $friendsListRepository->findOneBy([
-//                    'friends' => $friend,
-//                    'users' => $user
-//                ]);
-                //TODO: EntityManagerInterface Pas nécessaire - remplacer $manager par $friendsListRepository
-//                $manager->remove($signedUp);
-//                $manager->flush();
-//                return $this->redirectToRoute('app_friend_index');
-//            }
-//
-//            $signUp = new FriendsList();
-//            $signUp->setFriends($friend)
-//                ->setUsers($user);
-
-            // TODO: remplacer $manager par $friendsListRepository et persist par add
-//            $manager->persist($signUp);
-//            $manager->flush();
-//
-//            return $this->redirectToRoute('app_friend_index');
-//        }
-//        return $this->renderForm('friend/new.html.twig', [
-//            'friend' => $friend,
-//            'form' => $form,
-//        ]);
-//    }
 }

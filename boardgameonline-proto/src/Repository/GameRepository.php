@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Data\SearchData;
 use App\Entity\Game;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -24,11 +25,16 @@ class GameRepository extends ServiceEntityRepository
      */
     private PaginatorInterface $paginator;
 
+    /**
+     * @param ManagerRegistry $registry
+     * @param PaginatorInterface $paginator
+     */
     public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Game::class);
         $this->paginator = $paginator;
     }
+
 
     public function add(Game $entity, bool $flush = false): void
     {
@@ -48,26 +54,41 @@ class GameRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * Récupère les jeux en lien avec une recherche
-//     * @return Game[]
-//     */
-//    public function findSearch(SearchData $search ): array {
-//        return $this->findAll();
-//        $query = $this
-//            ->createQueryBuilder('p')
-//            ->select('c', 'p')
-//            ->join('p.category', 'c');
-//        return $query->getQuery()->getResult();
-//
-//
-//    }
-
     /**
      * Récupère les produits en lien avec une recherche
-//     * @return PaginationInterface
+     * @return PaginationInterface
      */
     public function findSearch(SearchData $search): PaginationInterface
+    {
+        $query = $this->getSearchQuery($search)->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            15
+        );
+
+    }
+
+    /**
+     * Récupère le nombre de joueurs correspondant à une recherche
+     * @param SearchData $search
+     * @return integer[]
+     */
+    public function findMinMax(SearchData $search): array
+    {
+        $results = $this->getSearchQuery($search)
+            ->select('MIN(g.minPlayer) as minPlayer', 'MAX(g.maxPlayer) as maxPlayer')
+            ->getQuery()
+            ->getScalarResult();
+        return [(int)$results[0]['minPlayer'], (int)$results[0]['maxPlayer']];
+    }
+
+    /**
+     *
+     * @param SearchData $search
+     * @return QueryBuilder
+     */
+    private function getSearchQuery (SearchData $search): QueryBuilder
     {
         $query = $this
             ->createQueryBuilder('g')
@@ -98,16 +119,8 @@ class GameRepository extends ServiceEntityRepository
                 ->setParameter('category', $search->category);
         }
 
-        $query = $query->getQuery();
-        return $this->paginator->paginate(
-            $query,
-            1,
-            15
-        );
-
+        return $query;
     }
-
-
 
 //    /**
 //     * @return Game[] Returns an array of Game objects

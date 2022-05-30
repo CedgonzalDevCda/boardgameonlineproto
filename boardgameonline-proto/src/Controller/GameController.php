@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\GameListByUser;
 use App\Form\GameType;
-use App\Repository\CategoryRepository;
 use App\Repository\GameListByUserRepository;
 use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,10 +18,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameController extends AbstractController
 {
     /**
+     * Récupère la liste complète des jeux
      * @param GameRepository $gameRepository
      * @return Response
      */
     #[Route('/', name: 'app_game_index', methods: ['GET'])]
+    #[IsGranted('ROLE_AUTHOR')]
     public function index(GameRepository $gameRepository): Response
     {
         return $this->render('game/index.html.twig', [
@@ -31,7 +32,7 @@ class GameController extends AbstractController
     }
 
     /**
-     *
+     * Ajoute un jeu
      * @param Request $request
      * @param GameRepository $gameRepository
      * @return Response
@@ -57,7 +58,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * Pas de restriction d'accès
+     * Affiche les informations associées à un jeu visible
      * @param Game $game
      * @return Response
      */
@@ -70,7 +71,7 @@ class GameController extends AbstractController
     }
 
     /**
-     *
+     * Modifie les informations associées à un jeu
      * @param Request $request
      * @param Game $game
      * @param GameRepository $gameRepository

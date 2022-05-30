@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 class UserController extends AbstractController
 {
     /**
-     * Cette route permet de visualiser les informations de l'utilisateur
+     * Affiche les informations de l'utilisateur connecté
      *
      * @return Response
      */

@@ -88,6 +88,11 @@ class Friend
         return $this;
     }
 
+    /**
+     *
+     * @param User|null $user
+     * @return bool
+     */
     public function isUserFriendsLists (?User $user):bool
     {
         foreach($this->friendsLists as $friendsLists){

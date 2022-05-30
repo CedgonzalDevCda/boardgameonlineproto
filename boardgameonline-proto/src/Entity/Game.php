@@ -46,6 +46,7 @@ class Game
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
     private $onlineVersion;
 
+    //TODO: Modifier MCD-MLD puis supprimer
     #[ORM\Column(type: 'boolean')]
     private $favoris;
 
@@ -197,11 +198,13 @@ class Game
         return $this;
     }
 
+    //TODO: Modifier MCD-MLD puis supprimer
     public function isFavoris(): ?bool
     {
         return $this->favoris;
     }
 
+    //TODO: Modifier MCD-MLD puis supprimer
     public function setFavoris(bool $favoris): self
     {
         $this->favoris = $favoris;
@@ -294,6 +297,7 @@ class Game
     }
 
     /**
+     *
      * @param User $user
      * @return boolean
      */

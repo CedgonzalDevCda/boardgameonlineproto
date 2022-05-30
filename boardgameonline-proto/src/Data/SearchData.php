@@ -13,14 +13,14 @@ class SearchData
     public ?string $q = '';
 
     /**
-     * @var integer|null
+     * @var null|integer
      */
-    public ?Integer $minPlayer;
+    public ?integer $minPlayer;
 
     /**
-     * @var integer|null
+     * @var null|integer
      */
-    public ?Integer $maxPlayer;
+    public ?integer $maxPlayer;
 
     /**
      * @var Category[]

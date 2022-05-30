@@ -1,0 +1,20 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+<h4 class="mt-2">Rechercher</h4>
+    {{ form_row(form.q) }}
+
+<h4 class="mt-2">Catégories</h4>
+{{ form_row(form.category) }}
+
+<h4 class="mt-2">Joueurs</h4>
+<div class="row">
+    <div class="col-md-6 w-25">
+        {{ form_row(form.minPlayer) }}
+    </div>
+    <div class="col-md-6 w-25">
+        {{ form_row(form.maxPlayer) }}
+    </div>
+</div>
+<div class="mt-2">
+{{ form_row(form.Filtrer) }}
+</div>
+{{ form_end(form) }}

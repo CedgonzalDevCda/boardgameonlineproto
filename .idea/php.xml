@@ -102,6 +102,8 @@
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/sensio/framework-extra-bundle" />
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/knplabs/knp-paginator-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

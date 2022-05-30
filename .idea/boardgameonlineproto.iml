@@ -106,6 +106,8 @@
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/sensio/framework-extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/knplabs/knp-components" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/knplabs/knp-paginator-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

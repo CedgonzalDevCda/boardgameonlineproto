@@ -18,6 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/game')]
 class GameController extends AbstractController
 {
+    /**
+     * @param GameRepository $gameRepository
+     * @return Response
+     */
     #[Route('/', name: 'app_game_index', methods: ['GET'])]
     public function index(GameRepository $gameRepository): Response
     {
@@ -26,7 +30,14 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     *
+     * @param Request $request
+     * @param GameRepository $gameRepository
+     * @return Response
+     */
     #[Route('/new', name: 'app_game_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_AUTHOR')]
     public function new(Request $request, GameRepository $gameRepository): Response
     {
         $game = new Game();
@@ -45,6 +56,11 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     * Pas de restriction d'accès
+     * @param Game $game
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_game_show', methods: ['GET'])]
     public function show(Game $game): Response
     {
@@ -53,7 +69,15 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     *
+     * @param Request $request
+     * @param Game $game
+     * @param GameRepository $gameRepository
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_game_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_AUTHOR')]
     public function edit(Request $request, Game $game, GameRepository $gameRepository): Response
     {
         $form = $this->createForm(GameType::class, $game);
@@ -71,7 +95,15 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     * TODO: Modifier la fonction delete de manière simplement gérer la visibilité du jeu sur le site
+     * @param Request $request
+     * @param Game $game
+     * @param GameRepository $gameRepository
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_game_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_AUTHOR')]
     public function delete(Request $request, Game $game, GameRepository $gameRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$game->getId(), $request->request->get('_token'))) {
@@ -81,6 +113,13 @@ class GameController extends AbstractController
         return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * Fonction pour gérer la liste des jeux favoris par utilisateur
+     * @param EntityManagerInterface $manager
+     * @param Game $game
+     * @param GameListByUserRepository $gameListByUserRepository
+     * @return Response
+     */
     #[Route('/{id}/subscribe', name: 'app_game_signup', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function subscribe(EntityManagerInterface $manager, Game $game, GameListByUserRepository $gameListByUserRepository): Response

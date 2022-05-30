@@ -45,7 +45,8 @@ class GameroomController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_gameroom_show', methods: ['GET'])]
-    public function show(Gameroom $gameroom, GameRepository $gameRepository): Response
+    public function show(Gameroom $gameroom): Response
+//    , GameRepository $gameRepository
     {
         return $this->render('gameroom/show.html.twig', [
             'gameroom' => $gameroom,

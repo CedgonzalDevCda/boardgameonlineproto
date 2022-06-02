@@ -9,9 +9,21 @@
 
 
 {% block body %}
+    <div id="player-slider" style="min-height: 50px;"></div>
+    <div class="row">
+        {#      Début de Sidebar #}
+        <div class="col-3 filter">
+            {#                Filtre par catégorie#}
+            <div class="ps-3 card" >
+                <div class="form-check">
+                    {% include 'components/_filter.html.twig' with {form: form} only %}
+                </div>
+            </div>
+            {#            Carousel#}
+            {#            {% include "components/carousel.html.twig" %}#}
+        </div>
 
-    <div class="mt-5 row">
-{#      Rubrique Main Gamelist#}
+        {#      Main Gamelist#}
         <div class="row col-9 justify-content-center ms-2 gap-5 ">
             <h1 class="text-center">Liste des jeux</h1>
 
@@ -24,27 +36,17 @@
                         {% if app.user == false %}
                             <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_login') }}">Jouer</a></div>
                         {% else %}
-                            <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_gameroom_index') }}">Jouer</a></div>
+                            <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_gameroom_index', {id: game.id}) }}">Jouer</a></div>
                         {% endif %}
                         <div class="col-6"><a class="btn btn-outline-success" href="{{ path('app_game_show', {id: game.id}) }}">Détails</a></div>
                     </div>
                 </div>
             {% endfor %}
-            <div class="mt-4">
+            <div class="mt-4 ms-5">
                 {{ knp_pagination_render(games) }}
             </div>
         </div>
-{#      Début de Sidebar #}
-        <div class="col-3 filter">
-            <div class="ps-3 card" >
-                {#                Filtre par catégorie#}
-                <div class="form-check">
-                    {% include 'components/_filter.html.twig' with {form: form} only %}
-                </div>
-            </div>
-            {#            Carousel#}
-            {% include "components/carousel.html.twig" %}
-        </div>
+
         {#      Footer - Pagination #}
 
     </div>

@@ -8,24 +8,33 @@ use phpDocumentor\Reflection\Types\Integer;
 class SearchData
 {
     /**
+     * @var int
+     */
+    public $page =1;
+
+    /**
      * @var string
      */
     public ?string $q = '';
 
     /**
-     * @var null|integer
+     * @var null|int
      */
-    public ?integer $minPlayer;
+    public ?int $minPlayer;
 
     /**
-     * @var null|integer
+     * @var null|int
      */
-    public ?integer $maxPlayer;
+    public ?int $maxPlayer;
 
     /**
      * @var Category[]
      */
     public array $category = [];
+
+    //TODO: Ajouter la durée de jeu d'une partie au filtre
+    //playingTimeMin
+    //playingTimeMax
 
 
 }

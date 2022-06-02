@@ -55,7 +55,8 @@ class GameRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère les produits en lien avec une recherche
+     * Récupère les jeux en lien avec une recherche
+     * @param SearchData $search
      * @return PaginationInterface
      */
     public function findSearch(SearchData $search): PaginationInterface
@@ -64,7 +65,7 @@ class GameRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            15
+            9
         );
 
     }

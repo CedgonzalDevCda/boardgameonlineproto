@@ -3,10 +3,12 @@
 {% block title %}Nouveau jeu{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau jeu</h1>
+    <div>
+        <h1 class="mt-4 text-center">Créer un nouveau jeu</h1>
 
-    <div class="card">
-        {{ include('game/_form.html.twig') }}
+        <div class="card">
+            {{ include('game/_form.html.twig') }}
+        </div>
+        <a href="{{ path('home') }}">Retour à l'accueil</a>
     </div>
-    <a href="{{ path('home') }}">Retour à l'accueil</a>
 {% endblock %}

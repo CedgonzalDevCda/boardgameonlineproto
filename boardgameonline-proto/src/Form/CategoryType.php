@@ -17,15 +17,17 @@ class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        //Champ Rechercher un jeu à transférer dans la NavBar
         $builder
+            //Champ Rechercher un jeu à transférer dans la NavBar
             ->add('q', TextType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Rechercher un jeu'
+                    'placeholder' => 'Rechercher un jeu',
+                    'class' => 'w-50'
                 ]
-        ])
+            ])
+            // Sélection des catégories
             ->add('category', EntityType::class, [
                 'label' => false,
                 'required' => false,
@@ -33,7 +35,7 @@ class CategoryType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ])
-            //Modifier ce champ pour ajouter un filtre suivant le nombre de joueurs min et max
+            //filtre suivant le nombre de joueurs min et max
             ->add('minPlayer', NumberType::class, [
                 'label' => false,
                 'required' => false,
@@ -49,7 +51,12 @@ class CategoryType extends AbstractType
                 ]
             ])
             //Bouton Submit ->
-            ->add('Filtrer', SubmitType::class,);
+            ->add('Filtrer', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary mb-4'
+                ],
+            ])
+        ;
     }
 
 
@@ -62,7 +69,7 @@ class CategoryType extends AbstractType
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return '';
     }

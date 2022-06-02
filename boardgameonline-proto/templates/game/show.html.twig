@@ -3,13 +3,8 @@
 {% block title %}Game{% endblock %}
 
 {% block body %}
-<!-- champ de mise à jour pour l'auteur -->
-{#<div class="row justify-content-between text-center">#}
-{#    <div class="col-md-6 ms-auto"><a href="{{ path('app_game_index') }}">Back to list</a></div>#}
-{#    <div class="col-md-6"><a href="{{ path('app_game_edit', {'id': game.id}) }}">Edit</a></div>#}
-{#</div>#}
-<p class="mt-2 text-center fs-3">[  game.category to update by category.name ]</p>
 
+<p class="mt-2 text-center fs-3">{{ categoryGame }}</p>
 
 <div class="container">
     <div class="row g-0 bg-light position-relative">
@@ -32,7 +27,7 @@
             <div class="row justify-content-around">
                 {#                    Lancer une partie #}
                 <div class="col-4">
-                    <a href="{{ path('app_gameroom_index') }}" class="btn btn-outline-success">Lancer une partie</a>
+                    <a href="{{ path('app_gameroom_index', {id: game.id}) }}" class="btn btn-outline-success">Lancer une partie</a>
                 </div>
                 {#                    Ajouter l'option des favoris #}
                 {% if game.isUserFavorite(app.user) == false%}

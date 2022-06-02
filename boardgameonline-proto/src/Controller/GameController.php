@@ -67,6 +67,7 @@ class GameController extends AbstractController
     {
         return $this->render('game/show.html.twig', [
             'game' => $game,
+            'categoryGame' => $game->getCategory(),
         ]);
     }
 
@@ -134,7 +135,6 @@ class GameController extends AbstractController
                 'games' => $game,
                 'users' => $user
             ]);
-            //TODO: EntityManagerInterface Pas nécessaire - remplacer $manager par $gameListByUserRepository
             $manager->remove($signedUp);
             $manager->flush();
 
@@ -145,7 +145,6 @@ class GameController extends AbstractController
         $signUp->setGames($game)
             ->setUsers($user);
 
-        // TODO: remplacer $manager par $gameListByUserRepository et persist par add
         $manager-> persist($signUp);
         $manager->flush();
 

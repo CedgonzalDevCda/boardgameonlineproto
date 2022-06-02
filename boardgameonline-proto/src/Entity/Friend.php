@@ -13,13 +13,15 @@ class Friend
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $email;
+    #[Assert\Regex(pattern:"/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/", message:"not_valid_email")]
+
+    private string $email;
 
     #[ORM\OneToMany(mappedBy: 'friends', targetEntity: FriendsList::class)]
     private $friendsLists;
@@ -89,7 +91,7 @@ class Friend
     }
 
     /**
-     *
+     * Ajoute un ami à sa liste d'ami
      * @param User|null $user
      * @return bool
      */

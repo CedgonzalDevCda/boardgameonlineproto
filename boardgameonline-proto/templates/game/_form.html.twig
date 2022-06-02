@@ -1,4 +1,26 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="row justify-content-around mt-4 ms-4">
+    <div class="mt-4 w-50">
+        {{ form_start(form) }}
+        <div class="w-50">
+            {{ form_row(form.name) }}
+        </div>
+
+        <div class="mt-4">
+            {{ form_row(form.category) }}
+        </div>
+        <div class="mt-4 w-25">{{ form_row(form.ruleVersion) }}</div>
+        <div class="mt-4">{{ form_row(form.rules) }}</div>
+        <div class="mt-4 w-25">{{ form_row(form.age) }}</div>
+        <div class="mt-4">{{ form_row(form.image) }}</div>
+        <div class="row mt-4">
+            <div class="col-6 mt-4">{{ form_row(form.minPlayer) }}</div>
+            <div class="col-6 mt-4">{{ form_row(form.maxPlayer) }}</div>
+        </div>
+        <div class="mt-4"></div>
+        <div class="mt-4"></div>
+        <div class="mt-4">
+            {#        {{ form_widget(form) }} #}
+            <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>

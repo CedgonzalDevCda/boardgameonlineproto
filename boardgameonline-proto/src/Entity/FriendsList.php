@@ -11,7 +11,7 @@ class FriendsList
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: Friend::class, inversedBy: 'friendsLists')]
     private $friends;

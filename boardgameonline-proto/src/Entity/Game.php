@@ -14,37 +14,37 @@ class Game
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
-    #[ORM\Column(type: 'boolean')]
-    private $isVisible;
+    #[ORM\Column(type: 'boolean',)]
+    private bool $isVisible;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $rules;
+    private string $rules;
 
     #[ORM\Column(type: 'string', length: 45)]
-    private $ruleVersion;
+    private string $ruleVersion;
 
     #[ORM\Column(type: 'integer')]
-    private $minPlayer;
+    private int $minPlayer;
 
     #[ORM\Column(type: 'integer')]
-    private $maxPlayer;
+    private int $maxPlayer;
 
     #[ORM\Column(type: 'integer')]
-    private $age;
+    private int $age;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $image;
+    private string $image;
 
     #[ORM\Column(type: 'text')]
-    private $description;
+    private string $description;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
-    private $onlineVersion;
+    private string $onlineVersion;
 
     //TODO: Modifier MCD-MLD puis supprimer
     #[ORM\Column(type: 'boolean')]
@@ -298,7 +298,7 @@ class Game
 
     /**
      *
-     * @param User $user
+     * @param null|User $user
      * @return boolean
      */
     public function isUserFavorite (?User $user):bool
@@ -349,6 +349,11 @@ class Game
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
 }

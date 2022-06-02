@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+//#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -28,6 +29,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+//    #[ORM\Column(type: 'datetime_immutable')]
+//    #[Assert\NotNull()]
+//    private \DateTimeImmutable $createdAt;
+
+//    #[ORM\Column(type: 'datetime_immutable')]
+//    #[Assert\NotNull()]
+//    private \DateTimeImmutable $updatedAt;
+
+
+
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: GameListByUser::class)]
     private $gameListByUsers;
 
@@ -36,6 +47,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+//        $this->createdAt = new \DateTimeImmutable();
+//        $this->updatedAt = new \DateTimeImmutable();
         $this->gameListByUsers = new ArrayCollection();
         $this->friendsLists = new ArrayCollection();
     }

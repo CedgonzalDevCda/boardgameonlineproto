@@ -2,8 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Game;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,21 +19,62 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isVisible')
-            ->add('name')
-            ->add('category')
-            ->add('rules')
-            ->add('ruleVersion')
-            ->add('minPlayer')
-            ->add('maxPlayer')
-            ->add('age')
-            ->add('image')
-            ->add('description')
+            ->add('name', TextType::class, [
+                    'label' => 'Saisir le nom du jeu',
+                ]
+            )
+            ->add('isVisible',)
+            ->add('category', EntityType::class, [
+                'label' => 'Sélectionner la catégorie du jeu',
+                'required' => false,
+                'class' => Category::class,
+                'expanded' => true,
+                'multiple' => false,
+                'placeholder' => 'Aucune catégorie'
+            ])
+            ->add('rules', TextareaType::class, [
+                'label' => 'Ecrivez les règles du jeu',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ]
+            ])
+            ->add('ruleVersion', TextType::class, [
+                'label' => 'Version du jeu'
+            ])
+            ->add('minPlayer', NumberType::class, [
+                'label' => 'Nombre de joueurs minimum',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ],
+
+            ])
+            ->add('maxPlayer', NumberType::class, [
+                'label' => 'Nombre de joueurs maximum',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ]
+            ])
+            ->add('age', NumberType::class, [
+                'label' => 'Age min recommandé',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ]
+            ])
+            ->add('image', FileType::class)
+            ->add('description', TextareaType::class, [
+                'label' => 'Description du jeu',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ]
+            ])
             ->add('onlineVersion')
             ->add('favoris')
-            ->add('dateCreation')
-            ->add('dateLastUpdate')
-        ;
+            ->add('dateCreation', DateType::class, [
+                'widget' => 'single_text',
+            ])
+            ->add('dateLastUpdate', DateType::class, [
+                'widget' => 'single_text',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

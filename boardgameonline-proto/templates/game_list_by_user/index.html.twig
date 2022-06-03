@@ -10,8 +10,8 @@
             {% for game in games %}
                 {% if game.isUserFavorite(app.user) %}
                     <div class="row align-items-center border mb-5">
-                        <div class="col-4"><img src="/image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"
-                                                alt="template"></div>
+                        <div class="col-4">
+                            <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"></div>
                         <div class="col-4 fs-4">
                             <div>{{ game.name }}</div>
                             <div><a href="{{ path('app_gameroom_index', {id: game.id}) }}"

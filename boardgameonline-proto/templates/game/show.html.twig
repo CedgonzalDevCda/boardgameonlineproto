@@ -14,7 +14,7 @@
             <div class="position-relative" style="width: 600px; height:400px;">
                 <div class="ms-2 position-absolute top-0 start-0 fs-4 text-muted">Game
                     version: {{ game.onlineVersion }}</div>
-                <img src="/image/w600_h400_Image_Prototype.png">
+                <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="600" height="400">
             </div>
             <div class="positon-absolute bg-primary fs-4 text-center text-light">Note global: X / 5</div>
             <div class="row justify-content-center">
@@ -47,17 +47,7 @@
         <div class="col-md-6 p-4 ps-md-0">
             <h2 class="mt-0 text-center">{{ game.name }}</h2>
             <h5 class="mt-3">Game.description:</h5>
-            <p>blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla
-                blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                blabla blabla blabla blabla
+            <p>{{ game.description }}
             </p>
             <div class="border border-dark">
                 <h5 class="text-center">Informations</h5>
@@ -86,28 +76,7 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    But du jeu: blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-                                    blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
+                                    {{ game.rules }}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close

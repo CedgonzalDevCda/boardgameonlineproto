@@ -110,6 +110,7 @@
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/knplabs/knp-paginator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/jms/metadata" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/vich/uploader-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/friendsofsymfony/ckeditor-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

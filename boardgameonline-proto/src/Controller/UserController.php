@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserPasswordType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,8 +21,7 @@ class UserController extends AbstractController
      * @return Response
      */
     #[Route('/user', name: 'app_user')]
-
-
+    #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
@@ -39,7 +39,7 @@ class UserController extends AbstractController
      * @return Response
      */
     #[Route('/user/change-password/{id}', name: 'app_edit_password', methods: ['GET', 'POST'])]
-    public function editPassword( User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    public function editPassword(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserPasswordType::class);
 

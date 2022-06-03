@@ -4,12 +4,11 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Game;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,11 +32,8 @@ class GameType extends AbstractType
                 'multiple' => false,
                 'placeholder' => 'Aucune catégorie'
             ])
-            ->add('rules', TextareaType::class, [
+            ->add('rules', CKEditorType::class, [
                 'label' => 'Ecrivez les règles du jeu',
-                'label_attr' => [
-                    'class' => 'mt-4'
-                ]
             ])
             ->add('ruleVersion', TextType::class, [
                 'label' => 'Version du jeu'
@@ -69,11 +65,8 @@ class GameType extends AbstractType
                     ]
                 ]
             )
-            ->add('description', TextareaType::class, [
-                'label' => 'Description du jeu',
-                'label_attr' => [
-                    'class' => 'mt-4'
-                ]
+            ->add('description', CKEditorType::class, [
+                'label' => 'Description'
             ])
             ->add('onlineVersion')
             ->add('favoris')

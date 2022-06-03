@@ -25,7 +25,7 @@ class Game
     #[ORM\Column(type: 'string', length: 100)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private string $rules;
 
     #[ORM\Column(type: 'string', length: 45)]

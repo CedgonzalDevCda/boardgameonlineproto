@@ -20,7 +20,6 @@ class Friend
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Regex(pattern:"/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/", message:"not_valid_email")]
-
     private string $email;
 
     #[ORM\OneToMany(mappedBy: 'friends', targetEntity: FriendsList::class)]

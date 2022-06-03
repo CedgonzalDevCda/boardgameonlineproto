@@ -108,6 +108,8 @@
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/phpstan/phpdoc-parser" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/knplabs/knp-components" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/knplabs/knp-paginator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/jms/metadata" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/vich/uploader-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

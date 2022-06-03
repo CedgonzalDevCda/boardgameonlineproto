@@ -104,6 +104,8 @@
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/phpstan/phpdoc-parser" />
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/vich/uploader-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

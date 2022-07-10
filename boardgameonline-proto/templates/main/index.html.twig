@@ -96,20 +96,21 @@
     </div>
     {#    Partie Jeu du site #}
     <div id="game-list">
+        <div id="player-slider" style="min-height: 50px;"></div>
         <div class="container" >
             <div class="row">
-
-                {#      Main Gamelist #}
-                <div class="row col-12 justify-content-center">
-                    {#      Début de Sidebar #}
-                    <div class="my-4 col-12 filter" >
-                        {#                Filtre par catégorie #}
-                        <div class="px-3 card">
-                            <div class="form-check">
-                                {% include 'components/_filter.html.twig' %}
-                            </div>
+                {#      Début de Sidebar #}
+                <div class="my-4 col-12 filter" >
+                    {#                Filtre par catégorie #}
+                    <div class="px-3 card">
+                        <div class="form-check">
+                            {% include 'components/_filter.html.twig' %}
                         </div>
                     </div>
+                </div>
+                {#      Main Gamelist #}
+                <div class="row col-12 justify-content-center">
+
                     <h1 class="text-center">Liste des jeux</h1>
 
                     {% for game in games %}

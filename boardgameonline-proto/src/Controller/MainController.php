@@ -27,6 +27,8 @@ class MainController extends AbstractController
             'form' => $form->createView(),
             'minPlayer' => $minPlayer,
             'maxPlayer' => $maxPlayer,
+//            'minPlayingTime' => $minPlayingTime,
+//            'maxPlayingTime' => $maxPlayingTime,
         ]);
     }
 }

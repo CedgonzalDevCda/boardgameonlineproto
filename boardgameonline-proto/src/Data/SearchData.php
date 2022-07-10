@@ -33,8 +33,16 @@ class SearchData
     public array $category = [];
 
     //TODO: Ajouter la durée de jeu d'une partie au filtre
-    //playingTimeMin
-    //playingTimeMax
+
+    /**
+     * @var null|int
+     */
+    public ?int $minPlayingTime;
+
+    /**
+     * @var null|int
+     */
+    public ?int $maxPlayingTime;
 
 
 }

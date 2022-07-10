@@ -7,6 +7,7 @@ use App\Entity\Category;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +25,6 @@ class CategoryType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Rechercher un jeu',
-                    'class' => 'w-50'
                 ]
             ])
             // Sélection des catégories
@@ -50,12 +50,35 @@ class CategoryType extends AbstractType
                     'placeholder' => 'Max'
                 ]
             ])
+            //TODO: Ajouter la durée de jeu
+            //filtre suivant le temps de jeu min et max
+            ->add('minPlayingTime', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Min'
+                ]
+            ])
+            ->add('maxPlayingTime', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Max'
+                ]
+            ])
+
             //Bouton Submit ->
             ->add('Filtrer', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mb-4'
                 ],
             ])
+            ->add('Reset', ResetType::class, [
+                'attr' => [
+                    'class' => 'btn btn-danger mb-4'
+                ],
+            ]);
+
         ;
     }
 

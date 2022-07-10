@@ -38,7 +38,17 @@ class Game
     private int $maxPlayer;
 
     #[ORM\Column(type: 'integer')]
+    private int $minPlayingTime;
+
+    #[ORM\Column(type: 'integer')]
+    private int $maxPlayingTime;
+
+    #[ORM\Column(type: 'integer')]
     private int $age;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull()]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
@@ -64,6 +74,8 @@ class Game
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateCreation;
 
+
+
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateLastUpdate;
 
@@ -78,6 +90,7 @@ class Game
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable;
         $this->updatedAt = new \DateTimeImmutable();
         $this->users = new ArrayCollection();
         $this->gameListByUsers = new ArrayCollection();
@@ -247,29 +260,37 @@ class Game
 
         return $this;
     }
-
+    //TODO: Modifier MCD-MLD puis supprimer
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
     }
-
+    //TODO: Modifier MCD-MLD puis supprimer
     public function setDateCreation(?\DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
 
         return $this;
     }
-
+    //TODO: Modifier MCD-MLD puis supprimer
     public function getDateLastUpdate(): ?\DateTimeInterface
     {
         return $this->dateLastUpdate;
     }
-
+    //TODO: Modifier MCD-MLD puis supprimer
     public function setDateLastUpdate(?\DateTimeInterface $dateLastUpdate): self
     {
         $this->dateLastUpdate = $dateLastUpdate;
 
         return $this;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
@@ -366,6 +387,42 @@ class Game
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMinPlayingTime(): int
+    {
+        return $this->minPlayingTime;
+    }
+
+    /**
+     * @param int $minPlayingTime
+     * @return Game
+     */
+    public function setMinPlayingTime(int $minPlayingTime): self
+    {
+        $this->minPlayingTime = $minPlayingTime;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxPlayingTime(): int
+    {
+        return $this->maxPlayingTime;
+    }
+
+    /**
+     * @param int $maxPlayingTime
+     */
+    public function setMaxPlayingTime(int $maxPlayingTime): self
+    {
+        $this->maxPlayingTime = $maxPlayingTime;
         return $this;
     }
 

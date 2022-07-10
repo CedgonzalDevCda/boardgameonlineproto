@@ -71,13 +71,13 @@ class GameRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère le nombre de joueurs correspondant à une recherche
+     * Récupère le nombre de joueurs minimum et maximum associé aux jeux correspondant à une recherche
      * @param SearchData $search
      * @return integer[]
      */
     public function findMinMax(SearchData $search): array
     {
-        $results = $this->getSearchQuery($search)
+        $results = $this->getSearchQuery($search, true)
             ->select('MIN(g.minPlayer) as minPlayer', 'MAX(g.maxPlayer) as maxPlayer')
             ->getQuery()
             ->getScalarResult();
@@ -89,7 +89,7 @@ class GameRepository extends ServiceEntityRepository
      * @param SearchData $search
      * @return QueryBuilder
      */
-    private function getSearchQuery (SearchData $search): QueryBuilder
+    private function getSearchQuery (SearchData $search, $ignoreGame = false): QueryBuilder
     {
         $query = $this
             ->createQueryBuilder('g')
@@ -102,13 +102,13 @@ class GameRepository extends ServiceEntityRepository
                 ->setParameter('q', "%{$search->q}%");
         }
 
-        if (!empty($search->minPlayer)) {
+        if (!empty($search->minPlayer) && $ignoreGame === false) {
             $query = $query
                 ->andWhere('g.minPlayer >= :minPlayer')
                 ->setParameter('minPlayer', $search->minPlayer);
         }
 
-        if (!empty($search->maxPlayer)) {
+        if (!empty($search->maxPlayer) && $ignoreGame === false) {
             $query = $query
                 ->andWhere('g.maxPlayer <= :maxPlayer')
                 ->setParameter('maxPlayer', $search->maxPlayer);

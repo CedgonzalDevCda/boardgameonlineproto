@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- Ajouter le fullname dans entity User -->
+<h1>Demande de {{ user.fullName }}</h1>
+
+<p>Email :
+    <!-- Boucle for sur les friend.email sélectionnés-->
+    {{ friend.email }}</p>
+<p>Sujet :
+    <!-- Ajouter le firstname dans entity User -->
+    Invitation de {{ user.firstname }} {{ user.fullname }} pour une partie de {{game.name}}
+    </p>
+<p>Message :</p>
+<div>
+    Salut je t'invite à une partie de {{ game.name }}
+    tu peux me rejoindre en cliquant sur le lien
+    <!-- Ajouter le firstname dans entity User -->
+    Lien: https://www.boardgameonlineproto/{{game.id}}/{{gameroom.hashInvit}}
+    {{ contact.message|raw }}
+    Ce lien reste valide pendant 24h.
+</div>
+</body>
+</html>

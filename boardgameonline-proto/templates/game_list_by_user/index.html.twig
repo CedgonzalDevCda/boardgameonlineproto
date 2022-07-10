@@ -9,17 +9,32 @@
         <div>
             {% for game in games %}
                 {% if game.isUserFavorite(app.user) %}
-                    <div class="row align-items-center border mb-5">
-                        <div class="col-4">
-                            <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"></div>
-                        <div class="col-4 fs-4">
-                            <div>{{ game.name }}</div>
-                            <div><a href="{{ path('app_gameroom_index', {id: game.id}) }}"
-                                    class="btn btn-primary ">Lancer une partie</a></div>
-                        </div>
-                        <div class="col-4"><a href="{{ path('app_game_favorite', {id: game.id}) }}"
-                                              class="btn btn-danger">Supprimer des
-                                favoris</a>
+                    <div class="border">
+                        <div class="fs-3 text-center">{{ game.name }}</div>
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"></div>
+                            <div class="col-4 fs-4">
+                                <div class="mt-3 fs-5 text-center">Nombre de joueurs:</div>
+                                <div class="row justify-content-center gap-3">
+                                    <div class="col-3 fs-5 btn btn-outline-dark">Min: {{ game.minPlayer }}</div>
+                                    <div class="col-3 fs-5 btn btn-outline-dark">Max: {{ game.maxPlayer }}</div>
+                                </div>
+                                <div class="mt-3 fs-5 text-center">Durée de jeu:</div>
+                                <div class="mb-2 row justify-content-center gap-3 ">
+                                    <div class="col-3 fs-5 btn btn-outline-dark">Min: {{ game.minPlayingTime }}</div>
+                                    <div class="col-3 fs-5 btn btn-outline-dark">Max: {{ game.maxPlayingTime }}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mt-2 mb-2 text-center"><a
+                                            href="{{ path('app_game_favorite', {id: game.id}) }}"
+                                            class="btn btn-danger">Supprimer des
+                                        favoris</a></div>
+                                <div class="mt-2 mb-2 text-center"><a
+                                            href="{{ path('app_gameroom_index', {id: game.id}) }}"
+                                            class="btn btn-primary ">Lancer une partie</a></div>
+                            </div>
                         </div>
                     </div>
 

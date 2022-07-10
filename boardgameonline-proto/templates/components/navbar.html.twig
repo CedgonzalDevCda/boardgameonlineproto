@@ -1,42 +1,40 @@
-{# {% extends 'base.html.twig' %} #}
+ {% extends 'base.html.twig' %}
 
 {# {% block title %}Navbar{% endblock %} #}
 
 {% block menu %}
-    <div class="fixed-top sticky-sm-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    {% if app.user %}
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_game_favorite') }}">Jeux favoris</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_friend_index') }}">Liste d'amis</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Partie en cours</a>
-                            </li>
-                        </ul>
-                    {% endif %}
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">BGO-proto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if app.user %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_game_favorite') }}">Jeux favoris</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_friend_index') }}">Liste d'amis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Partie en cours</a>
+                        </li>
+                    </ul>
+                {% endif %}
 
-                    {% if app.user == false %}
-                        <a class="me-3 btn btn-outline-success" href="{{ path('app_login') }}">Connexion</a>
-                        <a class="btn btn-outline-success" href="{{ path('app_register') }}">Inscription</a>
+                {% if app.user == false %}
+                    <a class="me-3 btn btn-outline-success" href="{{ path('app_login') }}">Connexion</a>
+                    <a class="btn btn-outline-success" href="{{ path('app_register') }}">Inscription</a>
 
-                    {% else %}
-                        <div class="me-3">Login: <a href="{{ path('app_user') }}">{{ app.user.username }}</a></div>
-                        <a class="btn btn-outline-danger" href="{{ path('app_logout') }}">Déconnexion</a>
-                    {% endif %}
-                </div>
+                {% else %}
+                    <div class="me-3">Login: <a href="{{ path('app_user') }}">{{ app.user.username }}</a></div>
+                    <a class="btn btn-outline-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+                {% endif %}
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 {% endblock %}

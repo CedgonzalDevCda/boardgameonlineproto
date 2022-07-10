@@ -107,6 +107,9 @@
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/jms/metadata" />
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/vich/uploader-bundle" />
       <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/friendsofsymfony/ckeditor-bundle" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/boardgameonline-proto/vendor/fakerphp/faker" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

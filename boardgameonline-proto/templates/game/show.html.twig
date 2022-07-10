@@ -18,10 +18,11 @@
             </div>
             <div class="positon-absolute bg-primary fs-4 text-center text-light">Note global: X / 5</div>
             <div class="row justify-content-center">
-                <div class="col-5">DateCreation</div>
-                <div class="col-5">{{ game.dateCreation ? game.dateCreation|date('Y-m-d H:i') : '' }}</div>
-                <div class="col-5">DateLastUpdate</div>
-                <div class="col-5">{{ game.dateLastUpdate ? game.dateLastUpdate|date('Y-m-d H:i') : '' }}</div>
+                <div class="col-5">Crée le:</div>
+                <div class="col-5">{{ game.createdAt ? game.createdAt|date('d/m/Y') : '' }}</div>
+                <div class="col-5">Dernière mise à jour: </div>
+{#                <div class="col-5">{{ game.updatedAt ? game.updatedAt|date('Y-m-d H:i') : '' }}</div>#}
+                <div class="col-5">{{ game.updatedAt ? game.updatedAt|date('d/m/Y') : '' }}</div>
             </div>
 
             <div class="row justify-content-around">
@@ -53,9 +54,11 @@
                 <h5 class="text-center">Informations</h5>
                 <div class="row justify-content-around ">
                     <div class="col-5">Age conseillé: {{ game.age }} et +</div>
-                    <div class="col-5">Durée de jeu: game.playingTime mm</div>
-                    <div class="col-5">Minimum de joueurs: {{ game.minPlayer }}</div>
-                    <div class="col-5">Maximum de joueurs: {{ game.maxPlayer }}</div>
+                    <div class="col-5">Durée de jeu: </div>
+                    <div class="col-5"></div>
+                    <div class="col-5">Min: {{ game.minPlayingTime}} mn / Max: {{ game.maxPlayingTime}} mn</div>
+                    <div class="col-5">Joueur Min: {{ game.minPlayer }}</div>
+                    <div class="col-5">Joueur Max: {{ game.maxPlayer }}</div>
                     <div class="col-5">RuleVersion: {{ game.ruleVersion }}</div>
                     <!-- Modal pour afficher les règles -->
                     <div class="col-5 mb-2">
@@ -85,10 +88,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-5">Commentaires: <span class="text-primary">(nb_commentaires)</span></div>
-                    <div class="col-5 mb-2">
-                        <button type="button" class="btn btn-primary">Voir les commentaires</button>
-                    </div>
+                    <!-- Ajouter la gestion des commentaires-->
+{#                    <div class="col-5">Commentaires: <span class="text-primary">(nb_commentaires)</span></div>#}
+{#                    <div class="col-5 mb-2">#}
+{#                        <button type="button" class="btn btn-primary">Voir les commentaires</button>#}
+{#                    </div>#}
 
 
                 </div>

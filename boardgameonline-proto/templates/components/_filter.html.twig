@@ -1,20 +1,46 @@
 {{ form_start(form, {attr: {class: 'filter'}}) }}
-<h4 class="mt-2">Rechercher</h4>
-    {{ form_row(form.q) }}
-
-<h4 class="mt-2">Catégories</h4>
-{{ form_row(form.category) }}
-
-<h4 class="mt-2">Joueurs</h4>
-<div class="row">
-    <div class="col-md-6 w-25">
-        {{ form_row(form.minPlayer) }}
+<div class="row" >
+    <div class="col-3 col-12 col-sm-6 col-lg-3">
+        <h4 class="mt-2">Rechercher</h4>
+        {{ form_row(form.q) }}
     </div>
-    <div class="col-md-6 w-25">
-        {{ form_row(form.maxPlayer) }}
+    <div class="col-12 col-sm-6 col-lg-3">
+        <h4 class="mt-2">Catégories</h4>
+        {{ form_row(form.category) }}
     </div>
-</div>
-<div class="mt-2">
-{{ form_row(form.Filtrer) }}
+    <div class="col-12 col-sm-6 col-lg-3">
+        <h4 class="mt-2">Joueurs</h4>
+        <div class="row">
+            <div class="col-6 col-md-6">
+                {{ form_row(form.minPlayer) }}
+            </div>
+            <div class="col-6 col-md-6">
+                {{ form_row(form.maxPlayer) }}
+            </div>
+            <div id="player-slider" class="mt-3 mb-3" data-min="{{ minPlayer }}" data-max="{{ maxPlayer }}"
+                 style="min-height: 20px;"></div>
+        </div>
+    </div>
+    <div class="col-3 col-12 col-sm-6 col-lg-3">
+        <h4 class="mt-2">Durée de jeu</h4>
+        <div class="row">
+            <div class="col-md-6 w-50">
+                {{ form_row(form.minPlayingTime) }}
+            </div>
+            <div class="col-md-6 w-50">
+                {{ form_row(form.maxPlayingTime) }}
+            </div>
+{#            <div id="time-slider" class="mt-3 mb-3" data-min="{{ minPlayingTime }}" data-max="{{ maxPlayingTime }}"#}
+{#                 style="min-height: 20px;"></div>#}
+        </div>
+    </div>
+    <div class="row justify-content-start mt-2">
+        <div class="col-md-1">
+            {{ form_row(form.Filtrer) }}
+        </div>
+        <div class="col-md-1">
+            {{ form_row(form.Reset) }}
+        </div>
+    </div>
 </div>
 {{ form_end(form) }}

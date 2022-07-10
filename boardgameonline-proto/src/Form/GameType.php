@@ -51,6 +51,19 @@ class GameType extends AbstractType
                     'class' => 'mt-4'
                 ]
             ])
+            ->add('minPlayingTime', NumberType::class, [
+                'label' => 'Temps minimum',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ],
+
+            ])
+            ->add('maxPlayingTime', NumberType::class, [
+                'label' => 'Temps maximum',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ]
+            ])
             ->add('age', NumberType::class, [
                 'label' => 'Age min recommandé',
                 'label_attr' => [

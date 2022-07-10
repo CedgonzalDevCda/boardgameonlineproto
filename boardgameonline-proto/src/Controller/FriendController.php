@@ -89,6 +89,7 @@ class FriendController extends AbstractController
     #[Route('/{id}/edit', name: 'app_friend_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Friend $friend, FriendRepository $friendRepository): Response
     {
+
         $form = $this->createForm(FriendType::class, $friend);
         $form->handleRequest($request);
         //TODO: Ajouter les règles de validations (expresssion régulières email)

@@ -111,6 +111,9 @@
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/jms/metadata" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/vich/uploader-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/friendsofsymfony/ckeditor-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/doctrine/data-fixtures" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/doctrine/doctrine-fixtures-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/fakerphp/faker" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

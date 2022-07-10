@@ -26,6 +26,7 @@ class GameController extends AbstractController
     #[IsGranted('ROLE_AUTHOR')]
     public function index(GameRepository $gameRepository): Response
     {
+        // Retourner tous les jeux présents en BDD.
         return $this->render('game/index.html.twig', [
             'games' => $gameRepository->findAll(),
         ]);
@@ -127,27 +128,28 @@ class GameController extends AbstractController
     public function subscribe(EntityManagerInterface $manager, Game $game, GameListByUserRepository $gameListByUserRepository): Response
     {
         $user = $this->getUser();
-
+        // Si utilisateur non connecté, redirection vers la page d'authentification.
         if(!$user) return $this->redirectToRoute('app_login');
-
+        // Si utilisateur connecté et que le jeu fait déjà partie de la liste des jeux favoris de cet utilisateur.
         if($game->isUserFavorite($user)){
             $signedUp = $gameListByUserRepository->findOneBy([
                 'games' => $game,
                 'users' => $user
             ]);
+            // Supprimer le jeu sélectionné de la liste des jeux favoris de l'utilisateur dans la BDD.
             $manager->remove($signedUp);
             $manager->flush();
-
+            // Redirection vers la fiche de description du jeu.
             return $this->redirectToRoute('app_game_show',['id' => $game->getId()]);
         }
-
+        // Si utilisateur connecté et que le jeu sélectionné ne fait pas partie de la liste des jeux favoris de cetutilisateur.
         $signUp = new GameListByUser();
         $signUp->setGames($game)
             ->setUsers($user);
-
+        // Ajouter le jeu sélectionné dans la liste des jeux favoris de l'utilisateur dans la BDD.
         $manager-> persist($signUp);
         $manager->flush();
-
+        // Redirection vers la fiche de description du jeu.
         return $this->redirectToRoute('app_game_show',['id' => $game->getId()]);
     }
 }

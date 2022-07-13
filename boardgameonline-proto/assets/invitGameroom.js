@@ -4,7 +4,7 @@ const input = document.querySelector('#select-new-player');
 const check = document.querySelector('input[type="checkbox"]');
 const button = document.querySelector('#btn-add-play');
 const toast = document.querySelector('#toast');
-let count = 3; //Nombre de players
+let count = 3; //Nombre de players 0
 
 // let gameName = document.getElementById('game-name').innerHTML;
 
@@ -65,10 +65,9 @@ const addTask = () => {
     // si la sélection n'est pas celle d'origine
     if (selectedPlayer.value === "Sélectionner l'ami à inviter") return;
     count++;
-
     // Si le joueur est déjà présent dans la playersList alors ne pas l'ajouter.
     taches.forEach((tache, key) => {
-        if (tache.txt == selectedPlayer) {
+        if (tache.txt === selectedPlayer) {
             console.log(tache.txt + " est un doublon");
         }
     });
@@ -84,7 +83,7 @@ const addTask = () => {
     input.value = '';
     // check.checked = false;
 
-    // on met à jour l'affichage avec le nouveau tableau (complété et trié).
+    // On met à jour l'affichage avec le nouveau tableau (complété et trié).
     displayTasks();
     displayToast('Joueur ajoutée', 'ajout');
 
@@ -97,7 +96,7 @@ const removeTask = (event) => {
 
     // on cherche le joueur qui correspond au bouton de suppression cliqué.
     taches.forEach((tache, key) => {
-        if (tache.id == event.target.id) {
+        if (tache.id === event.target.id) {
             index = key;
         }
     });
@@ -121,7 +120,7 @@ const editTask = (event) => {
     let index = null;
 
     taches.forEach((tache, key) => {
-        if (tache.id == event.target.dataset.id) {
+        if (tache.id === event.target.dataset.id) {
             index = key;
         }
     });
@@ -134,7 +133,7 @@ const editTask = (event) => {
     displayToast('La tâche a bien été modifiée', 'modification');
 };
 
-// Fonction pour mettre à jour l'affichage de la liste de joueurs sur la page
+// Fonction pour mettre à jour l'affichage de la liste de joueurs sur la page.
 const displayTasks = () => {
     section.innerHTML = '';
 
@@ -143,30 +142,32 @@ const displayTasks = () => {
     taches.forEach((tache) => {
         let task = document.createElement('div');
         task.style.borderRadius = "50px";
-        task.classList.add('row', 'p-0', 'mt-3', 'ms-5', 'mx-0', 'bg-info', 'justify-content-between', 'align-items-center', 'card', 'w-50');
+        task.classList.add('row', 'p-0', 'mt-3', 'ms-5', 'mx-0', 'bg-dark', 'text-white', 'justify-content-between', 'align-items-center', 'card', 'w-50');
         let taskText = document.createElement('div');
         taskText.classList.add('col-4');
         taskText.textContent = tache.txt;
 
         //
         let iconsContainer = document.createElement('div');
-        iconsContainer.classList.add('row', 'justify-content-around', 'border', 'col-4');
+        iconsContainer.classList.add('row', 'justify-content-around', 'col-4');
 
-        let edit = document.createElement('div');
-        edit.classList.add('edit-container', 'col-5', 'border');
-        edit.innerHTML = `<i class="fas fa-pencil-alt" data-id=${tache.id}></i>`;
-        edit.onclick = editTask;
-        edit.title = 'Modifier la tâche';
 
+        // let edit = document.createElement('div');
+        // edit.classList.add('edit-container', 'col-5');
+        // edit.innerHTML = `<i class="fas fa-pencil-alt" data-id=${tache.id}></i>`;
+        // edit.onclick = editTask;
+        // edit.title = 'Modifier la tâche';
+
+        //
         let bin = document.createElement('div');
-        bin.classList.add('trash-container', 'col-5', 'border');
+        bin.classList.add('trash-container', 'col-5');
         bin.innerHTML = `<i class="fas fa-trash-alt" id="${tache.id}"></i>`;
         bin.onclick = removeTask;
         bin.title = "Supprimer l'élément";
         task.id = `task${tache.id}`;
 
         task.appendChild(taskText);
-        iconsContainer.appendChild(edit);
+        // iconsContainer.appendChild(edit);
         iconsContainer.appendChild(bin);
         task.appendChild(iconsContainer);
 
@@ -204,33 +205,32 @@ const launchInvit = () => {
 
     // TODO: Créer une fonction fetch pour simplifier le code
 
-    // Préparation de la requête de récupération des infos du jeu
+    // Préparation de la requête de récupération des infos du jeu.
     let dataGamePromise = fetch(`/game/${queue_game_url}`)
         .then((request) => request.json())
         .then((data)=>{
             console.log(data)
         });
     ;
-    // Envoi requête de récupération des infos du jeu
+    // Envoi requête de récupération des infos du jeu.
     dataGamePromise.then(async (response) => {
         try{
             console.log(response);
             const contenu = await response.json();
             console.log(contenu);
-            // const
         } catch (e) {
             console.log(e);
         }
     });
 
-    // Préparation de la requête de récupération de l'utilisateur connecté
+    // Préparation de la requête de récupération de l'utilisateur connecté.
     let UserPromise = fetch(`/user`)
         .then((request) => request.json())
         .then((data)=>{
             console.log(data)
         });
     ;
-    // Envoi requête de récupération de l'utilisateur connecté
+    // Envoi requête de récupération de l'utilisateur connecté.
     UserPromise.then(async (response) => {
         try{
             console.log(response);
@@ -242,12 +242,12 @@ const launchInvit = () => {
         }
     });
 
-    // Check du nombre de joueurs à faire côté serveur
+    // Check du nombre de joueurs à faire côté serveur.
 
     // $nbPlayer >= game.minPlayer
     // $nbPlayer <= game.maxPlayer
 
-    // Créer la gameroom pour le jeu associé
+    // Créer la gameroom pour le jeu associé.
     let promise01 = fetch(`/gameroom/${queue_game_url}/new`, {
         method: "POST",
         body: JSON.stringify({
@@ -263,7 +263,7 @@ const launchInvit = () => {
         },
     });
 
-    // Envoi requête de récupération de l'utilisateur connecté
+    // Envoi requête de récupération de l'utilisateur connecté.
     promise01.then(async (response) => {
         try{
             console.log(response);

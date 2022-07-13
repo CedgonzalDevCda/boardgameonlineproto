@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Survey index{% endblock %}
+
+{% block body %}
+    <h1>Survey index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NameSurvey</th>
+                <th>Question1</th>
+                <th>Question2</th>
+                <th>Question3</th>
+                <th>Question4</th>
+                <th>Question5</th>
+                <th>Score1</th>
+                <th>Score2</th>
+                <th>Score3</th>
+                <th>Score4</th>
+                <th>Score5</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for survey in surveys %}
+            <tr>
+                <td>{{ survey.id }}</td>
+                <td>{{ survey.nameSurvey }}</td>
+                <td>{{ survey.question1 }}</td>
+                <td>{{ survey.question2 }}</td>
+                <td>{{ survey.question3 }}</td>
+                <td>{{ survey.question4 }}</td>
+                <td>{{ survey.question5 }}</td>
+                <td>{{ survey.score1 }}</td>
+                <td>{{ survey.score2 }}</td>
+                <td>{{ survey.score3 }}</td>
+                <td>{{ survey.score4 }}</td>
+                <td>{{ survey.score5 }}</td>
+                <td>
+                    <a href="{{ path('app_survey_show', {'id': survey.id}) }}">show</a>
+                    <a href="{{ path('app_survey_edit', {'id': survey.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_survey_new') }}">Create new</a>
+{% endblock %}

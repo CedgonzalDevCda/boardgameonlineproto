@@ -114,6 +114,7 @@
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/doctrine/data-fixtures" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/doctrine/doctrine-fixtures-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/boardgameonline-proto/vendor/symfony/sendinblue-mailer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

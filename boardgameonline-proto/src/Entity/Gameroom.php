@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\GameroomRepository;
+use DateInterval;
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GameroomRepository::class)]
@@ -30,6 +34,18 @@ class Gameroom
 
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'gamerooms')]
     private $games;
+
+    #[ORM\OneToMany(mappedBy: 'gamerooms', targetEntity: PlayerHasGameroom::class)]
+    private $playerHasGamerooms;
+
+    public function __construct()
+    {
+        $this->leader = 'test';
+        $this->hashInvit = $this->generateHashInvit();
+        $this->dateInvit = new DateTime();
+        $this->hashTimeout = $this->calculateHashTimeout(new DateTime());
+        $this->playerHasGamerooms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -107,4 +123,59 @@ class Gameroom
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, PlayerHasGameroom>
+     */
+    public function getPlayerHasGamerooms(): Collection
+    {
+        return $this->playerHasGamerooms;
+    }
+
+    public function addPlayerHasGameroom(PlayerHasGameroom $playerHasGameroom): self
+    {
+        if (!$this->playerHasGamerooms->contains($playerHasGameroom)) {
+            $this->playerHasGamerooms[] = $playerHasGameroom;
+            $playerHasGameroom->setGamerooms($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerHasGameroom(PlayerHasGameroom $playerHasGameroom): self
+    {
+        if ($this->playerHasGamerooms->removeElement($playerHasGameroom)) {
+            // set the owning side to null (unless already changed)
+            if ($playerHasGameroom->getGamerooms() === $this) {
+                $playerHasGameroom->setGamerooms(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Génère un hash d'invitation sans caractères spéciaux.
+     * @param $length
+     * @return string
+     */
+    private function generateHashInvit($length = 32) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    /**
+     * Ajoute un jou
+     * @param $dateToUpdate
+     * @return mixed
+     */
+    private function calculateHashTimeout($dateToUpdate){
+        return $dateToUpdate->add(new DateInterval('P1D'));
+    }
+
 }

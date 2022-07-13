@@ -7,44 +7,47 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="mt-5 text-center">Lancement d'une partie</h1>
-    <div id="game-name" class="mt-5 ms-5 fs-2 card text-center">Jeu: {{ game.name | upper }}</div>
-    <div id="game-maxPlayer" class="ms-5 fs-3 card text-center">Nombre max de joueurs: {{ game.maxPlayer }}</div>
-    <div id="game-maxPlayer" class="ms-5 fs-3 card text-center">Temps estimé: XX mn </div>
-
+    <div class="container bg-danger text-light rounded">
+        <div id="game-name" class="mt-5 ms-5 fs-2 text-center">Jeu: {{ game.name | upper }}</div>
+        <div id="game-maxPlayer" class="mt-2 ms-5 fs-3 text-center">
+            <div class="col-6"></div>
+            Nombre de joueurs: Min: {{ game.minPlayer }} Max: {{ game.maxPlayer }}</div>
+        <div id="game-maxPlayingTime" class="ms-5 fs-3 text-center">Temps estimé de la partie: {{ game.maxPlayingTime}} mn </div>
+    </div>
+    <div class="container mt-4  bg-dark text-light rounded">
+        <p class="ms-5 fs-3 text-center">Règles de jeu:</p>
+        {{ game.rules }}</div>
     <div id="toast"></div>
-    <div id="taches-container" class="row mt-5 justify-content-around" name="data-test"></div>
     <div class="mt-3 row justify-content-around">
         <!--sélectionner un ami-->
-        <div class="mt-3 ms-5 row justify-content-center align-items-center card bg-primary w-50" style="border-radius: 50px;">
-            {% for player in 2..game.maxPlayer %}
-            <div class="mb-1 px-2 py-2 col-12 row justify-content-center align-items-center">
-                <!-- Avatar joueur -->
-                <div class="col-2"><img class="rounded-circle" style="width: 50px; height: 50px;"
-                                        src="../image/template_img_JPEG_w240_h160_bg_000_text_fff.jpg"></div>
-                <div class="col-8 row">
-                    <div class="col-6">
-                        <select id="select-new-player" class="form-select" aria-label="Default select example">
-                            <option selected>Sélectionner l'ami à inviter</option>
-                            {% for friend in friends %}
-                                {% if friend.isUserFriendsLists(app.user) %}
-                                    <option value="{{ friend.name }}">{{ friend.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <button id="btn-add-play" class="btn btn-outline-light">Ajouter un joueur</button>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+
+{#        <div class="mt-3 ms-5 row justify-content-center align-items-center card bg-primary w-50" style="border-radius: 50px;">#}
+{#            <div class="mb-1 px-2 py-2 col-12 row justify-content-center align-items-center">#}
+{#                <div class="col-8 row">#}
+{#                    <div class="col-6">#}
+{#                        <select id="select-new-player" class="form-select" aria-label="Default select example">#}
+{#                            <option selected>Sélectionner l'ami à inviter</option>#}
+{#                            {% for friend in friends %}#}
+{#                                {% if friend.isUserFriendsLists(app.user) %}#}
+{#                                    <option value="{{ friend.name }}">{{ friend.name }}</option>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <button id="btn-add-play" class="btn btn-outline-light">Ajouter un joueur</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+        <!-- Liste des joueurs ajoutés à la table -->
+{#        <div id="taches-container" class="row mt-5 justify-content-around" name="data-test"></div>#}
         <!-- Commande pour lancement de partie-->
         <div class="row mt-4 justify-content-around w-50">
 {#            {{ form(form) }}#}
-            <div id="btn-invit" class="col-4 btn"><button><a href="#launch-invitation" class="btn btn-primary">Lancer les invitations</a></button></div>
-            <div class="col-4 btn"><a href="{{ path('app_gameroom_new', {id: game.id}) }}" class="btn btn-outline-danger">Lancer la partie</a></div>
+{#            <div id="btn-invit" class="col-4 btn"><button><a href="#launch-invitation" class="btn btn-primary">Lancer les invitations</a></button></div>#}
+            <div class="col-4 btn"><a href="{{ path('app_gameroom_new', {id: game.id}) }}" class="btn btn-outline-success">Lancer la partie</a></div>
             <div class="col-4 btn"><a href="{{ path('home') }}" class="btn btn-outline-danger">Annuler</a></div>
         </div>
     </div>

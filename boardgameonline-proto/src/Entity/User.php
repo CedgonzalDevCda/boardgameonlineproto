@@ -29,13 +29,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private string $password;
 
-//    #[ORM\Column(type: 'datetime_immutable')]
-//    #[Assert\NotNull()]
-//    private \DateTimeImmutable $createdAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull()]
+    private \DateTimeImmutable $createdAt;
 
-//    #[ORM\Column(type: 'datetime_immutable')]
-//    #[Assert\NotNull()]
-//    private \DateTimeImmutable $updatedAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull()]
+    private \DateTimeImmutable $updatedAt;
 
 
 
@@ -45,13 +45,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: FriendsList::class)]
     private $friendsLists;
 
+    #[ORM\Column(type: 'string', length: 180, nullable: true)]
+    private $email;
+
+
     public function __construct()
     {
-//        $this->createdAt = new \DateTimeImmutable();
-//        $this->updatedAt = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->gameListByUsers = new ArrayCollection();
         $this->friendsLists = new ArrayCollection();
     }
+
 
 
     public function getId(): ?int
@@ -183,6 +188,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
 
 
 }

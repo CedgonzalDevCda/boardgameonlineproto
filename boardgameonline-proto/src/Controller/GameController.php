@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameController extends AbstractController
 {
     /**
-     * Récupère la liste complète des jeux
+     * Récupère la liste complète des jeux.
      * @param GameRepository $gameRepository
      * @return Response
      */
@@ -33,7 +33,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * Ajoute un jeu
+     * Ajoute un jeu.
      * @param Request $request
      * @param GameRepository $gameRepository
      * @return Response
@@ -59,7 +59,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * Affiche les informations associées à un jeu visible
+     * Affiche les informations associées à un jeu visible.
      * @param Game $game
      * @return Response
      */
@@ -73,7 +73,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * Modifie les informations associées à un jeu
+     * Modifie les informations associées à un jeu.
      * @param Request $request
      * @param Game $game
      * @param GameRepository $gameRepository
@@ -117,7 +117,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * Fonction pour gérer la liste des jeux favoris par utilisateur
+     * Fonction pour gérer la liste des jeux favoris par utilisateur.
      * @param EntityManagerInterface $manager
      * @param Game $game
      * @param GameListByUserRepository $gameListByUserRepository

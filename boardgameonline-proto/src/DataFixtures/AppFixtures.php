@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
         $users[] = $admin;
         $manager->persist($admin);
 
-        // Création d'un compte Author.
+        // Création de comptes Author.
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setUsername($this->faker->name())
@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        // Création de compte User.
+        // Création de comptes User.
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setUsername($this->faker->name())

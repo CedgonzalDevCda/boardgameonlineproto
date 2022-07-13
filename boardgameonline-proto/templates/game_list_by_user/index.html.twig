@@ -5,15 +5,15 @@
 {% block body %}
 
     <div class="container">
-        <h1 class="text-center">Liste des jeux favoris</h1>
+        <h1 class="text-center mt-4 mb-5">Liste des jeux favoris</h1>
         <div>
             {% for game in games %}
                 {% if game.isUserFavorite(app.user) %}
-                    <div class="border">
+                    <div class="border mb-4">
                         <div class="fs-3 text-center">{{ game.name }}</div>
                         <div class="row align-items-center">
                             <div class="col-4">
-                                <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"></div>
+                                <a href="{{ path('app_game_show', {id: game.id}) }}"><img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"></a></div>
                             <div class="col-4 fs-4">
                                 <div class="mt-3 fs-5 text-center">Nombre de joueurs:</div>
                                 <div class="row justify-content-center gap-3">
@@ -27,10 +27,11 @@
                                 </div>
                             </div>
                             <div class="col-4">
-                                <div class="mt-2 mb-2 text-center"><a
-                                            href="{{ path('app_game_favorite', {id: game.id}) }}"
-                                            class="btn btn-danger">Supprimer des
-                                        favoris</a></div>
+                                <!-- Supprimer des favoris -->
+{#                                <div class="mt-2 mb-2 text-center"><a#}
+{#                                            href="{{ path('app_game_favorite', {id: game.id}) }}"#}
+{#                                            class="btn btn-danger">Supprimer des#}
+{#                                        favoris</a></div>#}
                                 <div class="mt-2 mb-2 text-center"><a
                                             href="{{ path('app_gameroom_index', {id: game.id}) }}"
                                             class="btn btn-primary ">Lancer une partie</a></div>

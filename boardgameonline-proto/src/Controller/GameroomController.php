@@ -9,6 +9,7 @@ use App\Form\GameroomType;
 use App\Repository\FriendRepository;
 use App\Repository\GameRepository;
 use App\Repository\GameroomRepository;
+use App\Repository\UserRepository;
 use App\Service\MailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameroomController extends AbstractController
 {
     /**
-     * Affiche le formulaire pour la création d'une table de jeu
+//     * Affiche le formulaire pour la création d'une table de jeu - A modifier
+     * Affiche les informations pratiques pour le lancement de partie
      * @param $id
      * @param GameRepository $gameRepository
      * @param GameroomRepository $gameroomRepository
@@ -37,67 +39,58 @@ class GameroomController extends AbstractController
     }
 
     /**
-     * Créer la table de jeu pour un jeu avec la liste d'amis prédéfinie
+     * Créer la table de jeu pour un jeu
      * @param Request $request
      * @param Game $id
-     * @param User $user
      * @param GameRepository $gameRepository
      * @param GameroomRepository $gameroomRepository
      * @param MailService $mailService
      * @return Response
-     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     #[Route('/{id}/new', name: 'app_gameroom_new', methods: ['GET', 'POST'], )]
 //options:
     public function new(
-        Request $request,
-        Game $id,
-        User $user,
-        GameRepository $gameRepository,
+        Request            $request,
+        Game               $id,
+        GameRepository     $gameRepository,
+        FriendRepository $friendRepository,
         GameroomRepository $gameroomRepository,
-        MailService $mailService
+        MailService        $mailService,
     ): Response {
 
         $gameroom = new Gameroom();
+        $form = $this->createForm(GameroomType::class, $gameroom);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $gameroomRepository->add($gameroom, true);
+
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('gameroom/new.html.twig', [
+            'gameroom' => $gameroom,
+            'form' => $form,
+//            'friends' => $friendRepository->findAll(),
+        ]);
 
         // Email
-        $mailService->sendEmail(
-        //TODO: Ajouter proprieté email getter et setter.
-        $user->getEmail(),
-        $gameroom->getId(),
-        'emails/invitgameroom.html.twig',
-        ['gameroom' => $gameroom,
-         'game'=> $id,
-         'user' => $user,
-        ],
+//        $mailService->sendEmail(
+//        $user->getEmail(),
+//        $gameroom->getId(),
+//        'emails/invitgameroom.html.twig',
+//        ['gameroom' => $gameroom,
+//         'game'=> $id,
+//         'user' => $user,
+//        ],
 //       $friendSelected->sendEmail()
-        );
+//        );
 
-        //TODO: Fetch POST la liste des amis invités.
 
-        //        if ($request->isXmlHttpRequest())
-        //        {
-        //
-        //        }
-        //        $form = $this->createForm(GameroomType::class, $gameroom);
-        //        $form->handleRequest($request);
-        //
-        //        if ($form->isSubmitted() && $form->isValid()) {
-        //            $gameroomRepository->add($gameroom, true);
-        //
-        //            return $this->redirectToRoute('app_gameroom_index', [], Response::HTTP_SEE_OTHER);
-        //        }
-        //
-        //        return $this->renderForm('gameroom/new.html.twig', [
-        //            'game' => $gameRepository->find($id), // test
-        //            'gameroom' => $gameroom,
-        //            'form' => $form,
-        //        ]);
-        //
 
-        return $this->render('gameroom/show.html.twig', [
-            'gameroom' => $gameroom,
-        ]);
+//        return $this->render('gameroom/show.html.twig', [
+//            'gameroom' => $gameroom,
+//        ]);
 
     }
 
@@ -106,14 +99,13 @@ class GameroomController extends AbstractController
      * @param Gameroom $gameroom
      * @return Response
      */
-//    #[Route('/{id}/show', name: 'app_gameroom_show', methods: ['GET'])]
-//    public function show(Gameroom $gameroom): Response
-////    , GameRepository $gameRepository
-//    {
-//        return $this->render('gameroom/show.html.twig', [
-//            'gameroom' => $gameroom,
-//        ]);
-//    }
+    #[Route('/{id}/show', name: 'app_gameroom_show', methods: ['GET'])]
+    public function show(Gameroom $gameroom): Response
+    {
+        return $this->render('gameroom/show.html.twig', [
+            'gameroom' => $gameroom,
+        ]);
+    }
 
 
     /**

@@ -2,8 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Friend;
+use App\Entity\Game;
+use App\Entity\GameListByUser;
 use App\Entity\Gameroom;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,18 +19,33 @@ class GameroomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            //
+            ->add('games', EntityType::class,[
+                'class' => Game::class,
+                'label' => 'Choisissez le jeu auquel vous souhaitez jouer',
+                ]
+            )
+            //
+            ->add('selectFriend', EntityType::class, [
+                'class' => Friend::class,
+                'multiple' => true,
+                'mapped' => false,
+                'choice_label' => 'name',
+                'label' => 'Choisissez les amis avec qui vous souhaitez jouer',
+            ])
+            // Nombre de joueurs
+            ->add('nbPlayer', IntegerType::class, [
+                        'label' => 'Nombre de joueurs',
+                        'label_attr' => [
+                            'class' => 'form-label  mt-4'
+                        ],
+            ])
             //Bouton Submit ->
             ->add('Inviter', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mb-4'
                 ],
             ])
-//            ->add('nbPlayer', TextType::class, [
-//                        'label' => 'Nombre de joueurs',
-//                        'label_attr' => [
-//                            'class' => 'form-label  mt-4'
-//                        ],
-//            ])
 //            ->add('dateInvit', DateTimeType::class, [
 //                'placeholder' => [
 //                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
@@ -45,7 +65,7 @@ class GameroomType extends AbstractType
 //            ->add('leader', TextType::class, [
 //                'label' => 'Leader'
 //            ])
-//            ->add('games')
+
         ;
     }
 

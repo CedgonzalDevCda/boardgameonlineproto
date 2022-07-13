@@ -88,6 +88,9 @@ class Game
     #[ORM\OneToMany(mappedBy: 'games', targetEntity: Gameroom::class)]
     private $gamerooms;
 
+    #[ORM\ManyToOne(targetEntity: Survey::class, inversedBy: 'games')]
+    private $survey;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable;
@@ -459,6 +462,18 @@ class Game
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getSurvey(): ?Survey
+    {
+        return $this->survey;
+    }
+
+    public function setSurvey(?Survey $survey): self
+    {
+        $this->survey = $survey;
+
+        return $this;
     }
 
 }

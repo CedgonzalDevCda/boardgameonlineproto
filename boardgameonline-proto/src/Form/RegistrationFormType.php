@@ -5,12 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationFormType extends AbstractType
 {
@@ -20,6 +22,12 @@ class RegistrationFormType extends AbstractType
             ->add('username')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'attr' => [
+                    'class' => 'mt-4',
+                ],
+                'label_attr' => [
+                    'class' => 'mt-3'
+                ],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -41,6 +49,22 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
+                ],
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '180',
+                ],
+                'label' => 'Adresse email',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Email(),
+                    new Assert\Length(['min' => 2, 'max' => 180])
                 ],
             ])
         ;

@@ -3,9 +3,9 @@
 {% block title %}New Gameroom{% endblock %}
 
 {% block body %}
-    <h1>Create new Gameroom</h1>
+    <h1 class="mt-4 text-center">Inviter des joueurs à une partie de</h1>
 
     {{ include('gameroom/_form.html.twig') }}
 
-    <a href="{{ path('app_gameroom_index', {id: game.id}) }}">back to list</a>
+{#    <a href="{{ path('app_gameroom_index', {id: game.id}) }}">back to list</a>#}
 {% endblock %}

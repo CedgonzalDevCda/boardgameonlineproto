@@ -142,7 +142,8 @@ class GameController extends AbstractController
             // Redirection vers la fiche de description du jeu.
             return $this->redirectToRoute('app_game_show',['id' => $game->getId()]);
         }
-        // Si utilisateur connecté et que le jeu sélectionné ne fait pas partie de la liste des jeux favoris de cetutilisateur.
+        // Si utilisateur connecté et que le jeu sélectionné ne fait pas partie de la liste des jeux favoris de
+        // cet utilisateur.
         $signUp = new GameListByUser();
         $signUp->setGames($game)
             ->setUsers($user);

@@ -1,17 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Friend{% endblock %}
+{% block title %}BGOproto - Liste amies{% endblock %}
 
 {% block body %}
-    <h1>Amis</h1>
-    <div>
-        <div>Name: {{ friend.name }}</div>
-        <div>Email: {{ friend.email }}</div>
+    <div class="container">
+        <h1 class="mt-4 text-center">Ami(e)</h1>
+        <div>
+            <div>Nom: {{ friend.name }}</div>
+            <div>Email: {{ friend.email }}</div>
+            <div class="row">
+                <div class="col-6"><a href="{{ path('app_friend_index') }}">Revenir à la liste d'amis</a></div>
+                <div class="col-6"><a href="{{ path('app_friend_edit', {'id': friend.id}) }}">Modifier les informations
+                        associées à un ami</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2">{{ include('friend/_delete_form.html.twig') }}</div>
     </div>
-
-
-    <a href="{{ path('app_friend_index') }}">Retour à l liste d'amis</a>
-    <a href="{{ path('app_friend_edit', {'id': friend.id}) }}">edit</a>
-
-    {{ include('friend/_delete_form.html.twig') }}
 {% endblock %}

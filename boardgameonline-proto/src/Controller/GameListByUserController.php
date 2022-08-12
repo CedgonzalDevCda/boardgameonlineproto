@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameListByUserController extends AbstractController
 {
     /**
-     * Affiche la liste des jeux favoris d'un utilisateur connecté
+     * Affiche la liste des jeux favoris d'un utilisateur connecté.
      * @param GameRepository $gameRepository
      * @return Response
      */

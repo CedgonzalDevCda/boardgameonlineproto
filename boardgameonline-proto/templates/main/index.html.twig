@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Accueil - BGOproto.fr{% endblock %}
 
 
 {% block stylesheets %}
@@ -9,7 +9,7 @@
 
 {% block body %}
     {#    Présentation du site #}
-    <div id="presentation" class="bg-dark text-light">
+    <section id="presentation" class="bg-dark text-light">
         <div class="container">
             <div class="row py-5">
                 <div class="col-12 text-center">
@@ -24,34 +24,15 @@
                 </div>
             </div>
         </div>
-    </div>
-    {#    svg wave #}
-    <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 180" xmlns="http://www.w3.org/2000/svg"
-         class="transition duration-300 ease-in-out delay-150">
-        <defs>
-            <linearGradient id="gradient" x1="0%" y1="51%" x2="100%" y2="49%">
-                <stop offset="5%" stop-color="#21252988"></stop>
-                <stop offset="95%" stop-color="#21252988"></stop>
-            </linearGradient>
-        </defs>
-        <path d="M 0,400 C 0,400 0,133 0,133 C 147.19999999999993,155.93333333333334 294.39999999999986,178.86666666666665 446,170 C 597.6000000000001,161.13333333333335 753.6000000000001,120.46666666666667 920,109 C 1086.3999999999999,97.53333333333333 1263.1999999999998,115.26666666666667 1440,133 C 1440,133 1440,400 1440,400 Z"
-              stroke="none" stroke-width="0" fill="url(#gradient)"
-              class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path>
-        <defs>
-            <linearGradient id="gradient" x1="0%" y1="51%" x2="100%" y2="49%">
-                <stop offset="5%" stop-color="#212529ff"></stop>
-                <stop offset="95%" stop-color="#212529ff"></stop>
-            </linearGradient>
-        </defs>
-        <path d="M 0,400 C 0,400 0,266 0,266 C 118.66666666666663,239.73333333333335 237.33333333333326,213.46666666666667 391,223 C 544.6666666666667,232.53333333333333 733.3333333333335,277.8666666666667 914,291 C 1094.6666666666665,304.1333333333333 1267.3333333333333,285.06666666666666 1440,266 C 1440,266 1440,400 1440,400 Z"
-              stroke="none" stroke-width="0" fill="url(#gradient)"
-              class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 200)"></path>
-    </svg>
+    </section>
+    {#    svg #}
+{#    viewBox="0 0 1440 320"#}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 260"><path fill="#212529" fill-opacity="1" d="M0,224L0,128L75.8,128L75.8,320L151.6,320L151.6,32L227.4,32L227.4,224L303.2,224L303.2,160L378.9,160L378.9,160L454.7,160L454.7,256L530.5,256L530.5,32L606.3,32L606.3,192L682.1,192L682.1,256L757.9,256L757.9,96L833.7,96L833.7,128L909.5,128L909.5,0L985.3,0L985.3,96L1061.1,96L1061.1,160L1136.8,160L1136.8,96L1212.6,96L1212.6,128L1288.4,128L1288.4,256L1364.2,256L1364.2,192L1440,192L1440,0L1364.2,0L1364.2,0L1288.4,0L1288.4,0L1212.6,0L1212.6,0L1136.8,0L1136.8,0L1061.1,0L1061.1,0L985.3,0L985.3,0L909.5,0L909.5,0L833.7,0L833.7,0L757.9,0L757.9,0L682.1,0L682.1,0L606.3,0L606.3,0L530.5,0L530.5,0L454.7,0L454.7,0L378.9,0L378.9,0L303.2,0L303.2,0L227.4,0L227.4,0L151.6,0L151.6,0L75.8,0L75.8,0L0,0L0,0Z"></path></svg>
     {#    Explication du site #}
-    <div class="container">
-        <div class="row justify-content-center  py-5">
-            <div class="ms-2 mb-3 col-12 col-sm-6 col-lg-3 text-center btn btn-danger" style="height:250px;">
-                <h2>Auteurs</h2>
+    <section class="container">
+        <div class="row justify-content-center py-5">
+            <div id="toggle-authors" class="ms-2 mb-3 col-12 col-sm-6 col-lg-3 text-center btn btn-danger" style="height:250px;">
+                <h2 style="font-weight: bold;">Auteurs</h2>
                 <p style="height:100px;">Les auteurs rédigent les règles de leurs jeux.
                 </p>
                 <p style="height:50px;" class="lead text-center">
@@ -60,10 +41,10 @@
                     </a>
                 </p>
             </div>
-            <div class="ms-2 col-12 col-sm-6 col-lg-3 text-center btn btn-danger" style="height:250px;">
-                <h2>Développeurs</h2>
+            <div class="ms-2 mb-3 col-12 col-sm-6 col-lg-3 text-center btn btn-danger" style="height:250px;">
+                <h2 style="font-weight: bold;">Développeurs</h2>
                 <p style="height:100px;">Les développeurs implémentent une version en ligne du jeu en accord avec les
-                    règles de l'auteur.</br>
+                    règles de l'auteur.
                 </p>
                 <p style="height:50px;" class="lead text-center">
                     <a href="" class="btn btn-secondary">
@@ -72,7 +53,7 @@
                 </p>
             </div>
             <div class="ms-2 col-12 col-sm-6 col-lg-3 text-center btn btn-danger" style="height:250px;">
-                <h2>Joueurs</h2>
+                <h2 style="font-weight: bold;">Joueurs</h2>
                 <p style="height:100px;">Les joueurs testent les jeux et donnent leurs avis.</p>
                 <p style="height:50px;" class="lead text-center">
                     <a href="" class="btn btn-secondary">
@@ -81,77 +62,212 @@
                 </p>
             </div>
         </div>
-    </div>
-
-    <div id="explication" class="vh-50 bg-secondary bg-opacity-25">
+        <div class="row justify-content-center py-5">
+            <div class="row justify-content-around show-author d-none">
+                <div class="card ms-2 mb-3 col-12 col-sm-6 col-lg-3" style="height:250px;">
+                    <div class="card-body">
+                        <h5 class="card-title">author.name</h5>
+                        <p class="card-text">author.description</p>
+                        <a href="#" class="btn btn-primary">Voir plus</a>
+                    </div>
+                </div>
+                <div class="card ms-2 mb-3 col-12 col-sm-6 col-lg-3" style="height:250px;">
+                    <div class="card-body">
+                        <h5 class="card-title">author.name</h5>
+                        <p class="card-text">author.description</p>
+                        <a href="#" class="btn btn-primary">Voir plus</a>
+                    </div>
+                </div>
+                <div class="card ms-2 mb-3 col-12 col-sm-6 col-lg-3" style="height:250px;">
+                    <div class="card-body">
+                        <h5 class="card-title">author.name</h5>
+                        <p class="card-text"> author.description</p>
+                        <a href="#" class="btn btn-primary">Voir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if is_granted('ROLE_USER') %}
+    <section id="explication" class="vh-50 bg-secondary bg-opacity-25">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-6">
                     <h2 class="py-3 fs-2 text-center text-dark">Envie de rejoindre l'aventure ?</h2>
-                    <p class="text-center text-dark">Vous souhaitez que votre jeu soit testé</p>
-                    <p class="text-center text-dark">Du blabla et encore du blabla</p>
+                    <p class="text-center text-dark">Vous souhaitez que votre jeu soit testé et les partager à vos
+                        amis</p>
+                    <p class="text-center text-dark">Alors rejoignez Boardgameonline-proto, pour créer vos jeux en
+                        cliquant sur le bouton ci-dessous</p>
+                    <p class="lead text-center">
+                        {% if is_granted('ROLE_AUTHOR') == false %}
+                            <a href="{{ path('app_user') }}">
+                                <button type="button" class="mb-2 btn btn-primary">
+                                    Devenir Auteur de jeu
+                                </button>
+                            </a>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') == false %}
+                            <a href="{{ path('app_user') }}">
+                                <button type="button" class="mb-2 btn btn-primary">
+                                    Devenir Développeur
+                                </button>
+                            </a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    {% endif %}
     {#    Partie Jeu du site #}
-    <div id="game-list">
-        <div class="container" >
+    <section id="game-list">
+        <div class="container">
             <div class="row">
-                {#      Début de Sidebar #}
-                <div class="my-4 col-12 filter" style="z-index: 1;">
-                    {#                Filtre par catégorie #}
-                    <div class="py-3 px-3 card">
-                        <div class="form-check">
+                {#      Début de Bloc filtre - peut-être transformer en sidebar #}
+                <div id="search-box" class="my-4 col-12 col-sm-12 col-lg-12 filter" style="z-index: 1;">
+                    <div class="px-3 card">
+                        <div class="row justify-content-space-between">
+                            <div class="col-4 col-sm-3 col-lg-2">
+                                <button class="btn" onclick="hidefilter()" id="show-filter">
+                                    <span> <i class="fa-regular fa-eye-slash"></i> Filtre</span>
+                                </button>
+                            </div>
+                            <div class="fs-2 col-4 col-sm-6 col-lg-8 text-center">
+                                Liste des jeux
+                            </div>
+                            <div class="col-4 col-sm-3 col-lg-2 text-primary">
+                                {% if games.getTotalItemCount != 0 %}
+                                    {{ games.getTotalItemCount }} jeux trouvé(s)
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div id="display-search" class="form-check">
                             {% include 'components/_filter.html.twig' %}
                         </div>
                     </div>
                 </div>
                 {#      Main Gamelist #}
                 <div class="row col-12 justify-content-center">
-
-                    <h1 class="text-center">Liste des jeux</h1>
-
+                    {% if games.getTotalItemCount == 0 %}
+                        <div class="fs-5 fst-italic text-center text-danger" > C'est un peu gênant mais votre recherche n'a abouti à aucun résultat.</div>
+                    {% endif %}
                     {% for game in games %}
                         {#  Refactor components card game #}
-                        <div class="row col-4 text-center justify-content-center">
+                        <div class="row col-12 col-sm-6 col-lg-4 text-center justify-content-center">
                             <div class="mt-4">{{ game.name }}</div>
                             <div>
-                                <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"></div>
+                                <img src="{{ vich_uploader_asset(game, 'imageFile') }}" width="240" height="160"
+                                     alt="..."></div>
                             <div class="mt-3 mb-3 row justify-content-between">
                                 {% if app.user == false %}
-                                    <div class="col-6"><a class="btn btn-outline-success"
+                                    <div class="col-6"><a class="btn btn-danger"
                                                           href="{{ path('app_login') }}">Jouer</a></div>
                                 {% else %}
-                                    <div class="col-6"><a class="btn btn-outline-primary"
+                                    <div class="col-6"><a class="btn btn-danger"
                                                           href="{{ path('app_gameroom_index', {id: game.id}) }}">Jouer</a>
                                     </div>
                                 {% endif %}
-                                <div class="col-6"><a class="btn btn-outline-primary"
+                                <div class="col-6"><a class="btn btn-danger"
                                                       href="{{ path('app_game_show', {id: game.id}) }}">Détails</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-                    <!-- -->
+                    <!--test-->
                     <div class="mt-4 px-auto">
-                        {{ knp_pagination_render(games) }}
+                        {#                        {{ knp_pagination_render(games) }} #}
                     </div>
                 </div>
             </div>
+            <div class="mt-4">
+                    {{ knp_pagination_render(games) }}
+            </div>
         </div>
-    </div>
-    {#      Footer - Pagination #}
+        <!-- -->
+
+    </section>
+
+    {#      Conponent Footer - Pagination #}
     <footer class=" vh-100 bg-dark text-light">
         <div class="container">
             <div class="row justify-content-center ">
-                <div class="mt-4 col-12 text-center">
-                    <a href="{{  path('app_report_bug') }}" class="btn btn-danger">Signaler une erreur</a>
+                <div class="mt-4 col-12 row justify-center text-center">
+                    <div class="col-lg-4 col-md-4 col-sm-4 text-left" style="padding:30px;">
+                        {#                        <h4 class="text-uppercase">Nous découvrir</h4> #}
+                        {#                        <p style="font-size:13px;margin-bottom:0px;"> #}
+                        {#                            <a href="" style="color:#F0F0F0;" class="">A propos de BGO-proto</a> #}
+                        {#                        </p> #}
+                        {#                        <p style="font-size:13px;margin-bottom:0px;"> #}
+                        {#                            <a href="" style="color:#F0F0F0;" class="">Nous contacter</a> #}
+                        {#                        </p> #}
+                        <p style="font-size:13px;margin-bottom:0px;">
+                            <a href="{{ path('app_login') }}" style="color:#F0F0F0;" class="">Connexion</a></p>
+                        <p style="font-size:13px;margin-bottom:0px;">
+                            <a href="{{ path('app_register') }}" style="text-decoration:none;color:#F0F0F0;" class="">Inscription</a>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 text-left" style="padding:30px;">
+                        {#                        <h4 class="text-uppercase">Parcourir</h4> #}
+                        {#                        <p style="font-size:13px;margin-bottom:0px;"><a href="" #}
+                        {#                                                                        style="text-decoration:none;color:#F0F0F0;" #}
+                        {#                                                                        class="">Les #}
+                        {#                                Jeux</a></p> #}
+                        {#                        <p style="font-size:13px;margin-bottom:0px;"><a target="_blank" rel="noopener noreferrer" #}
+                        {#                                                                        href="" #}
+                        {#                                                                        style="text-decoration:none;color:#F0F0F0;">Soutenir #}
+                        {#                                BGO-proto</a></p> #}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 text-left" style="padding:30px;">
+                        <h4 class="text-uppercase">Nos Réseaux</h4>
+                        <div>
+                            <a href="" style="padding:5px;color:#CD5C5C;" title="non fonctionnel"><i
+                                        class="fa-brands fa-facebook"
+                                        style="font-size:32px;"></i></a>
+                            <a href="" style="padding:5px;color:#CD5C5C;" title="non fonctionnel"><i
+                                        class="fa-brands fa-instagram"
+                                        style="font-size:32px;"></i></a>
+                            <a href="" style="padding:5px;color:#CD5C5C;" title="non fonctionnel"><i
+                                        class="fa-brands fa-twitter"
+                                        style="font-size:32px;"></i></a>
+                            <a href="" style="padding:5px;color:#CD5C5C;" title="non fonctionnel"><i
+                                        class="fa-brands fa-linkedin"
+                                        style="font-size:32px;"></i></a>
+
+                        </div>
+                    </div>
+                    {#                    //Findetest #}
+                    <div class="mt-4">
+                        <a href="{{ path('app_report_bug') }}" class="btn btn-danger">Signaler une erreur</a>
+                    </div>
                 </div>
-                <div class="col-12 text-center">
-                    <p><small>&copy; Lorem ipsum sit amet consectur</small></p>
+                <div class="mt-4 col-12 text-center">
+                    <p><small>&copy; 2024 BGO-proto.fr - Conçu par <span style="color:#CD5C5C">cedgonzalezdevcda</span>
+                        </small></p>
                 </div>
             </div>
         </div>
     </footer>
+    {% block javascripts %}
+        <script src="{{ asset('js/toggleAuthors.js') }}"></script>
+    {% endblock %}
+    <script defer>
+        const inputsearch = document.getElementById('display-search');
+        const inputeye = document.getElementById('show-filter');
+        console.log("test");
+        let stateSearch = false;
+
+        function hidefilter() {
+            stateSearch = !stateSearch;
+            if (!stateSearch) {
+                inputsearch.style.display = "none";
+                inputeye.innerHTML = `<span><i class="fa-solid fa-filter"></i></span>`
+            } else {
+                inputsearch.style.display = "";
+                inputeye.innerHTML = `<span> <i class="fa-regular fa-eye-slash"></i> Filtre</span>`
+            }
+        }
+
+        console.log("test stateSearch: " + stateSearch);
+
+    </script>
 {% endblock %}

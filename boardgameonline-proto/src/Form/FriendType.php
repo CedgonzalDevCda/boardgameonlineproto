@@ -14,8 +14,18 @@ class FriendType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('name', TextType::class,[
+                'label' => 'Nom et/ou Prénom de votre ami(e)',
+                'attr' => [
+                    'class' => 'mb-4'
+                ],
+            ])
+            ->add('email', EmailType::class,[
+                'label' => 'E-mail',
+                'attr' => [
+                    'class' => 'mb-4'
+                ],
+            ])
         ;
     }
 

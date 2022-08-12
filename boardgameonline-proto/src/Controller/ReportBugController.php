@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReportBugController extends AbstractController
 {
     /**
-     * Formulaire permettant l'envoi d'email à l'administratin pour reporter un bug constaté sur un jeu ou le site.
+     * Formulaire permettant l'envoi d'email à l'administration pour reporter un bug constaté sur un jeu ou le site.
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param MailService $mailService

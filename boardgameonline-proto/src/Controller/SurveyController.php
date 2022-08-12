@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SurveyController extends AbstractController
 {
     /**
-     * Affiche la liste des questionnaires créés
+     * Affiche la liste des questionnaires créés par l'auteur connecté
      *
      * @param SurveyRepository $surveyRepository
      * @return Response

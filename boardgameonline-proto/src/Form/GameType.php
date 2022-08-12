@@ -26,6 +26,9 @@ class GameType extends AbstractType
             ->add('isVisible',)
             ->add('category', EntityType::class, [
                 'label' => 'Sélectionner la catégorie du jeu',
+                'label_attr' => [
+                    'class' => 'fs-4'
+                ],
                 'required' => false,
                 'class' => Category::class,
                 'expanded' => true,
@@ -36,7 +39,7 @@ class GameType extends AbstractType
                 'label' => 'Ecrivez les règles du jeu',
             ])
             ->add('ruleVersion', TextType::class, [
-                'label' => 'Version du jeu'
+                'label' => 'Version - Règle du jeu'
             ])
             ->add('minPlayer', NumberType::class, [
                 'label' => 'Nombre de joueurs minimum',
@@ -52,42 +55,53 @@ class GameType extends AbstractType
                 ]
             ])
             ->add('minPlayingTime', NumberType::class, [
-                'label' => 'Temps minimum',
+                'label' => 'Temps mini (en mn)',
                 'label_attr' => [
                     'class' => 'mt-4'
                 ],
 
             ])
             ->add('maxPlayingTime', NumberType::class, [
-                'label' => 'Temps maximum',
+                'label' => 'Temps maxi (en mn)',
                 'label_attr' => [
                     'class' => 'mt-4'
                 ]
             ])
             ->add('age', NumberType::class, [
-                'label' => 'Age min recommandé',
+                'label' => 'Age min requis pour jouer',
                 'label_attr' => [
-                    'class' => 'mt-4'
+                    'class' => 'fs-4'
                 ]
             ])
 //            ->add('image')
             ->add('imageFile', VichImageType::class,[
+                    'delete_label' => "Supprimer l'image",
+                    'download_label' => "Télécharger l'image",
+                    'download_uri' => true,
                     'label' => 'Image du jeu',
                     'label_attr' => [
                         'class' => 'form-label mt-4'
-                    ]
+                    ],
+                    'required' => false,
                 ]
             )
             ->add('description', CKEditorType::class, [
-                'label' => 'Description'
+                'label' => 'Pitch du jeu',
+                'label_attr' => [
+                    'class' => 'fs-4'
+                ],
             ])
-            ->add('onlineVersion')
-            ->add('favoris')
+            ->add('onlineVersion', TextType::class, [
+                'label' => 'Version du jeu en ligne'
+            ])
+//            ->add('favoris')
             ->add('dateCreation', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'Date de création du jeu',
             ])
             ->add('dateLastUpdate', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'Date de dernière mise à jour du jeu',
             ]);
     }
 

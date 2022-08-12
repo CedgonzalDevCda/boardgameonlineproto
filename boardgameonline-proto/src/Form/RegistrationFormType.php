@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -19,11 +21,14 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username')
+            ->add('username', TextType::class, [
+                'label' => 'Login'
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => "Accepter les",
                 'mapped' => false,
                 'attr' => [
-                    'class' => 'mt-4',
+                    'class' => 'mt-3 mx-1',
                 ],
                 'label_attr' => [
                     'class' => 'mt-3'
@@ -33,6 +38,14 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+            ])
+            // Ajoutez le lien vers les termes d'utilisation
+            ->add('termsLink', ButtonType::class, [
+                'label' => "conditions d'utilisation",
+                'attr' => [
+                    'class' => 'btn btn-link',
+                    'onclick' => 'window.open("/terms_of_use", "_blank")', // Remplacez "/terms_of_use" par votre route vers les termes d'utilisation
+                ]
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

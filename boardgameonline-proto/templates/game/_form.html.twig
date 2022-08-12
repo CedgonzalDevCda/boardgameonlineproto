@@ -1,30 +1,125 @@
-<div class="row justify-content-around mt-4 ms-4">
-    <div class="mt-4 w-50">
-        {{ form_start(form) }}
-        <div class="w-50">
-            {{ form_row(form.name) }}
+<div class="bg-light">
+{#    Switch pour preview#}
+    <div class="pt-4 ms-5 form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Preview - Livret de règles</label>
+    </div>
+    <div class="d-flex justify-content-start mt-4 ">
+{#  Formulaire - Title#}
+        <div class="col-6 form-check form-switch">
+            <h2>Formulaire</h2>
         </div>
-
-        <div class="mt-4">
-            {{ form_row(form.category) }}
-        </div>
-        <div class="mt-4 w-25">{{ form_row(form.ruleVersion) }}</div>
-        <div class="mt-4">{{ form_row(form.rules) }}</div>
-        <div class="mt-4 w-25">{{ form_row(form.age) }}</div>
-        <div class="mt-4">{{ form_row(form.imageFile) }}</div>
-        <div class="row mt-4">
-            <div class="col-6 mt-4">{{ form_row(form.minPlayer) }}</div>
-            <div class="col-6 mt-4">{{ form_row(form.maxPlayer) }}</div>
-        </div>
-{#        test#}
-        <div class="row mt-4">
-{#            <div class="col-6 mt-4">{{ form_row(form.minPlayingTime) }}</div>#}
-{#            <div class="col-6 mt-4">{{ form_row(form.maxPlayingTime) }}</div>#}
-        </div>
-        <div class="mt-4"></div>
-        <div class="mt-4">
-            {#        {{ form_widget(form) }} #}
-            <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
-            {{ form_end(form) }}
+{#  Preview - Title#}
+        <div id="preview-game-title" class="col-6 d-none bg-light">
+            <h2>Preview</h2>
+            <div>
+                <button id="downloadPdfButton" class="btn btn-danger"><i class="fa-regular fa-file-pdf"></i></button>
+            </div>
         </div>
     </div>
+    <div class="row justify-content-around mt-4 ms-4">
+{#  Formulaire - Content#}
+        <div class="mt-4 row w-50">
+            {{ form_start(form) }}
+            <div class="col p-3 w-75 bg-white border border-secondary rounded-left rounded-3">
+                <div class="w-50 fs-4">
+                    {{ form_row(form.name, {'attr': {'id': 'nameField'}}) }}
+                </div>
+            </div>
+            <div class="col mt-3 p-3 w-75 bg-white border border-secondary rounded-left rounded-3">
+                <div>
+                    {{ form_row(form.age, {'attr': {'id': 'ageField'}}) }}
+                </div>
+            </div>
+            <div class="col mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                {{ form_row(form.category) }}
+            </div>
+            <div class="col mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="col mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                Raison du changement de règle
+                <p class="fs-5"><em>Exemple: Ajout d'une phase de jeu supplémentaire</em></p>
+            </div>
+            <div class="col d-flx mt-3 p-3 w-75 bg-white border border-secondary rounded-left rounded-3">
+                <div class="w-50">
+                    {{ form_row(form.ruleVersion) }}
+                </div>
+                <div class="w-50">
+                    {{ form_row(form.onlineVersion) }}
+                </div>
+            </div>
+            <div class="col mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                {{ form_row(form.rules) }}
+            </div>
+            <div class="col mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                {{ form_row(form.imageFile) }}
+            </div>
+            <div class="col d-flex mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                <div class="col-6 mt-4">{{ form_row(form.minPlayer) }}</div>
+                <div class="col-6 mt-4">{{ form_row(form.maxPlayer) }}</div>
+            </div>
+            <div class="col d-flex mt-3 p-3 w-75 fs-4 bg-white border border-secondary rounded-left rounded-3">
+                <div class="col-6 mt-4">{{ form_row(form.minPlayingTime) }}</div>
+                <div class="col-6 mt-4">{{ form_row(form.maxPlayingTime) }}</div>
+            </div>
+            <div class="mt-4"></div>
+            <div class="mt-4">
+                {#        {{ form_widget(form) }} #}
+                <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+{#  Preview - Content #}
+        <div id="previewContainer" class=" d-none w-50">
+            <div id="preview" class="position-relative bg-white h-100 border border-dark">
+                <div class="position-absolute row w-25" style="top: 10px; left: 20px">
+                    <div class="bg-light rounded mt-1"><i class="fa-solid fa-people-group"></i> {{ game.minPlayer }} - {{ game.maxPlayer }} joueur(s)</div>
+                    <div class="bg-light rounded mt-1"><i class="fa-solid fa-user-plus"></i> {{ game.age }} ans</div>
+                    <div class="bg-light rounded mt-1"><i class="fa-solid fa-clock"></i> {{ game.minPlayingTime }} - {{ game.maxPlayingTime }} (mn)</div>
+                </div>
+                <div class="position-absolute row w-25" style="top: 10px; right: 20px">
+                    <div class="bg-light rounded mt-1"><i class="fa-solid fa-people-group"></i> {{ game.category }}</div>
+                    <div class="bg-light rounded mt-1"><strong>Règle du jeu:</strong><br>Version {{ game.ruleVersion }}</div>
+                </div>
+                <h1 class="mt-5 text-center">Livret de règles</h1>
+                <p class="mx-5 fs-5 text-center bg-light rounded" style="height: 400px;">Image du jeu</p>
+                <h2 class="mt-5 mx-5 text-center bg-light rounded">{{ game.name }}</h2>
+                <h3 class="mt-5 ms-3 ">Pitch du jeu</h3>
+                <p class="mx-5 bg-light rounded">{{ game.description | striptags }}</p>
+                <h3 class="mt-5 ms-3 ">Règles du jeu</h3>
+                <div class="mx-5 bg-light rounded flex-wrap">{{ game.rules | raw }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggleSwitch = document.getElementById('flexSwitchCheckDefault');
+        var previewContainer = document.getElementById('previewContainer');
+        var previewTitleGame = document.getElementById('preview-game-title');
+        var nameField = document.getElementById('game_name');
+        var ageField = document.getElementById('game_age');
+        // Ajoutez d'autres variables pour les autres champs de formulaire de la même manière
+
+        toggleSwitch.addEventListener('change', function() {
+            previewTitleGame.classList.toggle('d-none');
+            previewContainer.classList.toggle('d-none'); // Basculer la classe d-none pour masquer ou afficher la prévisualisation
+        });
+
+        // Capturer la valeur du champ de formulaire "Nom du jeu" lorsqu'elle est modifiée
+        nameField.addEventListener('input', function() {
+            var previewName = document.getElementById('previewName');
+            previewName.textContent = nameField.value;
+        });
+
+        ageField.addEventListener('input', function() {
+            var previewAge = document.getElementById('previewAge');
+            previewAge.textContent = ageField.value;
+        });
+
+
+        // Ajoutez des écouteurs d'événements pour les autres champs du formulaire de la même manière
+    });
+</script>

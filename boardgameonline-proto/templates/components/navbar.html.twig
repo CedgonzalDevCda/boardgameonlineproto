@@ -5,7 +5,7 @@
 {% block menu %}
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">BGO-proto</a>
+            <a class="navbar-brand" href="/" style="font-weight:700;cursor:pointer;">BGO-proto</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -21,17 +21,23 @@
                             <a class="nav-link" href="{{ path('app_friend_index') }}">Liste d'amis</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Partie en cours</a>
+                            <a class="nav-link position-relative" href="#">Partie en cours
+{#                                Badge pour indiquer qu'il y a au moins une partie en cours#}
+                                <span class="position-absolute translate-middle bg-danger border border-light" style="padding: 2px 20px; border-radius: 6px; bottom: 0; left: 50%;"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Le blog</a>
                         </li>
                     </ul>
                 {% endif %}
 
                 {% if app.user == false %}
-                    <a class="me-3 btn btn-outline-success" href="{{ path('app_login') }}">Connexion</a>
-                    <a class="btn btn-outline-success" href="{{ path('app_register') }}">Inscription</a>
+                    <a class="me-3 btn btn-dark" href="{{ path('app_login') }}">Connexion</a>
+                    <a class="btn btn-danger" href="{{ path('app_register') }}">Inscription</a>
 
                 {% else %}
-                    <div class="me-3">Login: <a href="{{ path('app_user') }}">{{ app.user.username }}</a></div>
+                    <div class="me-3">Bienvenue <a href="{{ path('app_user') }}" style="color:blue;">{{ app.user.username }}</a></div>
                     <a class="btn btn-outline-danger" href="{{ path('app_logout') }}">Déconnexion</a>
                 {% endif %}
             </div>

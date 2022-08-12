@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4 text-center">Charte d'utilisation des auteurs</h1>
+        <h2>Conditions d’accès</h2>
+        <p>Un compte utilisateur peut-être supprimé :</p>
+        <ul>
+            <li>- Par l’utilisateur, s’il en fait la demande auprès de BGO-proto à l’adresse : xxxxxx@xxxxx.fr. En
+                conséquence, l’utilisateur n’aura plus accès à son compte. Ses messages postés seront toujours visibles
+                par les autres utilisateurs.
+            </li>
+            <li>- Par BGO-proto, en cas de non-respect des règles de cette charte par l’utilisateur.</li>
+        </ul>
+        <h2>Responsabilités</h2>
+        <p>Chaque utilisateur veille par son comportement à ne pas compromettre la sécurité et le bon fonctionnement du
+            site internet.</p>
+        <p>En cas de dépôt de publication, l’utilisateur doit veiller au respect de la loi du 30 juin 1994 relative aux
+            droits d’auteur. Il doit être en mesure d’attester disposer de l’ensemble des droits sur les contenus et
+            documents publiés.</p>
+        <p>L’auteur d’une publication est le seul responsable des propos qu’il tient.</p>
+        <p>Le BGO-proto ne saurait être tenu pour responsable de l’hébergement d’images ou contenus sans le
+            consentement des auteurs.</p>
+        <p>Le BGO-proto se réserve le droit de supprimer des images/contenus/liens hypertextes jugés contraires à
+            son image et aux dispositions de la présente charte.</p>
+        <p>Le BGO-proto ne saurait être tenu pour responsable des contenus des sites tiers accessibles via des
+            liens
+            hypertextes proposés dans le cadre des échanges.</p>
+
+        <h2>Validité des sources</h2>
+        <p>Le BGO-proto ne prend pas position sur les sources qui sont proposées par les utilisateurs. Néanmoins
+            pour être conforme à la charte, les sources ne doivent pas :</p>
+            <ul>
+                <li>- Contenir des messages contraires à la loi</li>
+                <li>- Contenir des messages dans le but de promouvoir un produit ou une activité (en dehors des encarts
+                publicitaires liés au fonctionnement du site)</li>
+                <li>- Contenir de virus et autres codes malveillants</li>
+            </ul>
+        <h2 class="mt-4 fs-3">Engagement de l'utilisateur</h2>
+        <p>Chaque auteur s’engage à :</p>
+        <ul>
+            <li>- Respecter les règles d’écriture : langue française, écriture claire et compréhensible (le langage type
+                SMS est proscrit);
+            </li>
+            <li>- Ne pas effectuer d’opération pouvant nuire au bon fonctionnement de la plateforme;</li>
+            <li>- Ne pas diffuser de propos, messages ou contenus à caractère raciste, diffamatoire, discriminatoire ou
+                pouvant porter atteinte à la vie privée d’autrui et de façon générale tout message contraire à la loi du
+                29 juillet 1881;
+            </li>
+            <li>- Ne pas diffuser de coordonnées sans l’autorisation de la personne concernée;</li>
+            <li>- Ne pas utiliser cette plateforme à des fins de démarchage commercial, religieux, politique,
+                délictueux,
+                criminel ou de nature à troubler l’ordre public;
+            </li>
+            <li>- Ne pas dupliquer un jeu existant dont il n'est pas l'auteur des règles;</li>
+            <li>- Autoriser le développement et le stockage de son jeu au format numérique uniquement sous le site
+                BGO-proto.fr;
+            </li>
+        </ul>
+{#        <h2 class="mt-4 fs-3">Conseils pour l'élaboration d'un jeu</h2>#}
+{#        <ul>#}
+{#            <li>Lister le matériel de jeu nécessaire</li>#}
+{#            <li>Chaque pièce utilisée est véritablement nécessaire au bon fonctionnement du jeu</li>#}
+{#            <li>Définir les zones de jeu: main du joueur, format de plateau, zone de réserve etc...</li>#}
+{#            <li>Décomposer un tour de jeu en différentes phases de jeu</li>#}
+{#            <li>Pour chaque de jeu, déterminer les actions possibles par le joueur actif et les autres joueurs</li>#}
+{#            <li>Tâcher de limiter le nombre d'actions possibles en un tour de jeu</li>#}
+{#            <li>Déterminer les évènements déclencheurs de fin de partie</li>#}
+{#            <li>blabla blabla</li>#}
+{#        </ul>#}
+
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form(form) }}
+    </div>
+{% endblock %}

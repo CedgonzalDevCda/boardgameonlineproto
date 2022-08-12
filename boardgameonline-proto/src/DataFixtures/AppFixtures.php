@@ -93,6 +93,7 @@ class AppFixtures extends Fixture
                 ->setDescription($this->faker->paragraph(3))
                 ->setOnlineVersion("0.0.0.0");
             // TODO: Manque ajout de l'image.
+
             $manager->persist($game);
         }
 

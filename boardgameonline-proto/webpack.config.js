@@ -6,6 +6,8 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+module.exports = Encore.getWebpackConfig();
+
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -21,8 +23,10 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('surveystyle', './assets/styles/survey.css')
+    .addEntry('survey', './assets/js/survey.js')
     .addEntry('filter', './assets/styles/filter.css')
-    .addEntry('invitGameroom', './assets/invitGameroom.js')
+    // .addEntry('invitGameroom', './assets/invitGameroom.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -57,21 +61,19 @@ Encore
         config.corejs = 3;
     })
 
-    // enables Sass/SCSS support
-    //.enableSassLoader()
+// enables Sass/SCSS support
+//.enableSassLoader()
 
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+// uncomment if you use TypeScript
+//.enableTypeScriptLoader()
 
-    // uncomment if you use React
-    //.enableReactPreset()
+// uncomment if you use React
+//.enableReactPreset()
 
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
+// uncomment to get integrity="..." attributes on your script & link tags
+// requires WebpackEncoreBundle 1.4 or higher
+//.enableIntegrityHashes(Encore.isProduction())
 
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
 ;
-
-module.exports = Encore.getWebpackConfig();

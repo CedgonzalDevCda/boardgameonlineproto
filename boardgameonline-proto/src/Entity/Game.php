@@ -23,7 +23,7 @@ class Game
     private bool $isVisible = false;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private string $name;
+    private string $name = "Custom your name";
 
     #[ORM\Column(type: 'text')]
     private string $rules;
@@ -32,19 +32,19 @@ class Game
     private string $ruleVersion;
 
     #[ORM\Column(type: 'integer')]
-    private int $minPlayer;
+    private int $minPlayer = 2;
 
     #[ORM\Column(type: 'integer')]
-    private int $maxPlayer;
+    private int $maxPlayer = 4;
 
     #[ORM\Column(type: 'integer')]
-    private int $minPlayingTime;
+    private int $minPlayingTime = 30;
 
     #[ORM\Column(type: 'integer')]
-    private int $maxPlayingTime;
+    private int $maxPlayingTime = 60;
 
     #[ORM\Column(type: 'integer')]
-    private int $age;
+    private int $age = 7;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
@@ -69,12 +69,10 @@ class Game
 
     //TODO: Modifier MCD-MLD puis supprimer
     #[ORM\Column(type: 'boolean')]
-    private $favoris;
+    private $favoris = false;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateCreation;
-
-
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateLastUpdate;
@@ -369,7 +367,7 @@ class Game
     }
 
     /**
-     *
+      Ajoute
      * @param null|User $user
      * @return boolean
      */

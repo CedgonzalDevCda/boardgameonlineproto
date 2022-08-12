@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Survey{% endblock %}
+{% block title %}Nouveau questionnaire{% endblock %}
 
 {% block body %}
-    <h1>Create new Survey</h1>
+    <h1 class="text-center">Créer un questionnaire</h1>
+    <div class="mt-4 container text-center">
+        <div class="row justify-content-around">
+            <div class="w-75 text-start">
+                {{ include('survey/_form.html.twig') }}
 
-    {{ include('survey/_form.html.twig') }}
-
-    <a href="{{ path('app_survey_index') }}">back to list</a>
+                <a href="{{ path('app_survey_index') }}">Revenir à la liste des questionnaires</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

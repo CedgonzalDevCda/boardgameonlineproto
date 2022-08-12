@@ -1,46 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Survey index{% endblock %}
+{% block title %}Tableau de bord Questionnaires{% endblock %}
 
 {% block body %}
-    <h1>Survey index</h1>
-
-    <table class="table">
+    <h1 class="mt-4 mb-4 text-center">Tableau de bord - Questionnaire</h1>
+    <div class="row justify-content-center">
+        <a class="w-50 btn btn-primary" href="{{ path('app_survey_new') }}">Créer un nouveau questionnaire</a>
+    </div>
+    <table class="mt-4 text-center table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>NameSurvey</th>
-                <th>Question1</th>
-                <th>Question2</th>
-                <th>Question3</th>
-                <th>Question4</th>
-                <th>Question5</th>
-                <th>Score1</th>
-                <th>Score2</th>
-                <th>Score3</th>
-                <th>Score4</th>
-                <th>Score5</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            {#                <th>Id</th> #}
+            <th>Nom du questionnaire</th>
+            <th>Question 1</th>
+            <th>Question 2</th>
+            <th>Question 3</th>
+            <th>Question 4</th>
+            <th>Question 5</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for survey in surveys %}
             <tr>
-                <td>{{ survey.id }}</td>
-                <td>{{ survey.nameSurvey }}</td>
+                <td><a class="btn btn-secondary" href="#" title="Consulter la liste des jeux ayant le questionnaire {{ survey.nameSurvey }} associé">{{ survey.nameSurvey }}</a></td>
                 <td>{{ survey.question1 }}</td>
                 <td>{{ survey.question2 }}</td>
                 <td>{{ survey.question3 }}</td>
                 <td>{{ survey.question4 }}</td>
                 <td>{{ survey.question5 }}</td>
-                <td>{{ survey.score1 }}</td>
-                <td>{{ survey.score2 }}</td>
-                <td>{{ survey.score3 }}</td>
-                <td>{{ survey.score4 }}</td>
-                <td>{{ survey.score5 }}</td>
                 <td>
-                    <a href="{{ path('app_survey_show', {'id': survey.id}) }}">show</a>
-                    <a href="{{ path('app_survey_edit', {'id': survey.id}) }}">edit</a>
+                    <a href="{{ path('app_survey_show', {'id': survey.id}) }}">Voir</a>
+                    <a href="{{ path('app_survey_edit', {'id': survey.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -51,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_survey_new') }}">Create new</a>
+
 {% endblock %}

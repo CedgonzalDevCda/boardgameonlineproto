@@ -1,18 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}BGOproto - Espace utilisateur{% endblock %}
 
 {% block body %}
     <div class="mt-5 container-md border">
         <div class="row" style="width: 42rem;">
-            <div class="mt-5 ms-5 mb-5 col-6 bg-dark text-center text-light" style="
+            <div class="mt-5 ms-5 mb-5 col-6 text-center text-light" style="
             width: 200px; height: 200px">
+                <img src="/image/avatar.png" alt="...">
             </div>
-            <div class="mt-5 ms-5 col-6">
-                <p>Username</p>
-{#                <p>{{ user.username }}</p>#}
-                <p>Username.info</p>
-                <p>Username.info</p>
+            <div class="mt-5 mb-5 ms-5 col-6">
+                <p>Pseudo: {{app.user.username }}</p>
+                <p>E-mail: {{app.user.email }}</p>
+                <p>Compte créé le: {{app.user.createdAt ? app.user.createdAt|date('d/m/Y') : ''  }}</p>
+                <div class="row">
+
+                {% if is_granted('ROLE_AUTHOR') %}
+                    <div class="col-6">
+                    <a class="mt-2 btn btn-primary" href="{{ path('app_game_index') }}">Tableau de bord "Auteur de jeu"</a>
+                    </div>
+                {%  else %}
+                    <div class="col-6">
+                        <a href="{{ path('app_become_author', {'id': app.user.id}) }}" class="mt-2 btn btn-primary">Devenir "Auteur de jeu"</a>
+                    </div>
+                {% endif %}
+                {% if is_granted('ROLE_AUTHOR') %}
+                    <div class="col-6">
+                        <a href="{{ path('app_survey_index') }}" class="mt-2 btn btn-primary">Tableau de bord "Questionnaire"</a>
+                    </div>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="col-6">
+                        <a class="mt-2 btn btn-primary" href="">Tableau de bord "Développeur" à définir</a>
+                    </div>
+                {%  else %}
+                    <div class="col-6">
+                        <a class="mt-2 btn btn-warning">Devenir "Développeur"</a>
+                    </div>
+                {% endif %}
+                </div>
             </div>
         </div>
     </div>

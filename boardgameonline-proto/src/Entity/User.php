@@ -6,12 +6,15 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+#[UniqueEntity(fields: ['username'], message: 'Il existe déjà un compte avec ce username')]
+// TODO:à modifier email sera le champs unique
 //#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -24,10 +27,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $username;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    #[Assert\NotNull()]
+    private array $roles = [];
+
+//    private ?string $plainPassword = null;
 
     #[ORM\Column(type: 'string')]
+//    #[Assert\NotBlank()]
     private string $password;
+
+    #[ORM\Column(type: 'string', length: 180, nullable: true)]
+    #[Assert\Email()]
+    private ?string $email;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
@@ -37,16 +48,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private \DateTimeImmutable $updatedAt;
 
+    #[ORM\Column(name: "is_author", type:"boolean")]
+    private bool $isAuthor = false;
 
+
+
+    #[ORM\Column(name: "is_admin", type:"boolean")]
+    private bool $isAdmin = false;
 
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: GameListByUser::class)]
     private $gameListByUsers;
 
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: FriendsList::class)]
     private $friendsLists;
-
-    #[ORM\Column(type: 'string', length: 180, nullable: true)]
-    private $email;
 
 
     public function __construct()
@@ -92,9 +106,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
+        //
+        if($this->isAdmin){
+            $roles[]='ROLE_ADMIN';
+        }
+        if($this->isAuthor){
+            $roles[]='ROLE_AUTHOR';
+        }
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
@@ -225,6 +245,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isAuthor(): bool
+    {
+        return $this->isAuthor;
+    }
 
+    /**
+     * @param bool $isAuthor
+     */
+    public function setIsAuthor(bool $isAuthor): void
+    {
+        $this->isAuthor = $isAuthor;
+    }
 
 }

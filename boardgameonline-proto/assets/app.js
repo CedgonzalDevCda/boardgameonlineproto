@@ -8,21 +8,21 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import './styles/filter.css';
+import '../public/css/survey.css';
 
 // start the Stimulus application
 import './bootstrap';
 
 // import '../public/js/invitGameroom';
+import '../public/js/survey';
 
 import noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import 'nouislider/dist/nouislider.js';
 
 
-console.log('test noUiSlider Hello');
-
 const slider = document.getElementById('player-slider');
-const sliderTime = document.getElementById('time-slider');
+// const sliderTime = document.getElementById('time-slider');
 
 if (slider) {
     const range = noUiSlider.create(slider, {
@@ -41,10 +41,10 @@ if (slider) {
     range.on('slide', function(values, handle) {
         console.log(values, handle)
         if (handle === 0) {
-            min.value = Math.round(values[0])
+            min.value = Math.round(values[0]);
         }
         if (handle === 1) {
-            max.value = Math.round(values[1])
+            max.value = Math.round(values[1]);
         }
     })
 }

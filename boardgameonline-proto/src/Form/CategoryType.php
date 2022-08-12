@@ -70,12 +70,12 @@ class CategoryType extends AbstractType
             //Bouton Submit ->
             ->add('Filtrer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mb-4'
+                    'class' => 'btn btn-dark mb-4'
                 ],
             ])
             ->add('Reset', ResetType::class, [
                 'attr' => [
-                    'class' => 'btn btn-danger mb-4'
+                    'class' => 'btn btn-primary mb-4'
                 ],
             ]);
 

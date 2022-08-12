@@ -8,6 +8,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Constraints\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GameroomRepository::class)]
 class Gameroom
@@ -24,6 +25,7 @@ class Gameroom
     private $dateInvit;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Regex("^[a-zA-Z0-9_]*$")]
     private $hashInvit;
 
     #[ORM\Column(type: 'datetime')]
@@ -170,7 +172,7 @@ class Gameroom
     }
 
     /**
-     * Ajoute un jou
+     * Ajoute un jour en fonction de la date
      * @param $dateToUpdate
      * @return mixed
      */

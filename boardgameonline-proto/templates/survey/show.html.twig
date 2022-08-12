@@ -2,73 +2,80 @@
 
 {% block title %}Questionnaire{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/survey.css') }}">
+{% endblock %}
+
+
 {% block body %}
     <div class="container">
         <div class="mx-auto w-50 text-center">
             <h2>{{ survey.nameSurvey }}</h2>
             <div class="mt-4 card" style="min-height: 40px;">
                 <div>{{ survey.question1 }}</div>
-{#                {{ survey.score1 }}#}
-                <div class="mb-4">
-{#                    <i class="fa-solid fa-star"></i>#}
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                <div id="score1" class="mb-4">
+                    <button name="1" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="2" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="3" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="4" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="5" class="btn-star"><i  class="fa-regular fa-star"></i></button>
                 </div>
             </div>
-            <div class="mt-4 card" style="min-height: 40px;">
+            <div  class="mt-4 card" style="min-height: 40px;">
                 <div>{{ survey.question2 }}</div>
                 {# survey.score2 #}
-                <div class="mb-4">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                <div id="score2" class="mb-4">
+                    <button name="1" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="2" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="3" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="4" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="5" class="btn-star"><i  class="fa-regular fa-star"></i></button>
                 </div>
             </div>
-            <div class="mt-4 card" style="min-height: 40px;">
+            <div  class="mt-4 card" style="min-height: 40px;">
                 <div>{{ survey.question3 }}</div>
-{#              {{ survey.score3 }}#}
-                <div class="mb-4">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                {#              {{ survey.score3 }} #}
+                <div id="score3" class="mb-4">
+                    <button name="1" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="2" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="3" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="4" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="5" class="btn-star"><i  class="fa-regular fa-star"></i></button>
                 </div>
             </div>
             <div class="mt-4 card" style="min-height: 40px;">
                 <div>{{ survey.question4 }}</div>
-                <div class="mb-4">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                <div id="score4" class="mb-4">
+                    <button name="1" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="2" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="3" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="4" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="5" class="btn-star"><i  class="fa-regular fa-star"></i></button>
                 </div>
-{#                <p>{{ survey.score4 }}</p>#}
+                {#                <p>{{ survey.score4 }}</p> #}
             </div>
             <div class="mt-4 card" style="min-height: 40px;">
                 <div>{{ survey.question5 }}</div>
-                <div class="mb-4">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                <div id="score5" class="mb-4">
+                    <button name="1" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="2" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="3" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="4" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+                    <button name="5" class="btn-star"><i  class="fa-regular fa-star"></i></button>
+
                 </div>
-{#                <p>{{ survey.score5 }}</p>#}
+                {#                <p>{{ survey.score5 }}</p> #}
             </div>
             <a class="mt-4 btn btn-primary" href="{{ path('app_survey_index') }}">Valider</a>
         </div>
     </div>
 
 
-{#    <a href="{{ path('app_survey_index') }}">back to list</a>#}
-{#    <a href="{{ path('app_survey_edit', {'id': survey.id}) }}">edit</a>#}
+    {#    <a href="{{ path('app_survey_index') }}">back to list</a> #}
+    {#    <a href="{{ path('app_survey_edit', {'id': survey.id}) }}">edit</a> #}
 
-{#    {{ include('survey/_delete_form.html.twig') }}#}
+    {#    {{ include('survey/_delete_form.html.twig') }} #}
+    {% block javascripts %}{% endblock %}
+    <script src="{{ asset('js/survey.js') }}" defer></script>
+
 {% endblock %}

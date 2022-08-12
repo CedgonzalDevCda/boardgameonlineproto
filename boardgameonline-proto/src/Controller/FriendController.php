@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FriendController extends AbstractController
 {
     /**
-     * Affiche la liste des amis d'un utilisateur
+     * Affiche la liste des amis d'un utilisateur.
      * @param FriendRepository $friendRepository
      * @return Response
      */
@@ -31,7 +31,7 @@ class FriendController extends AbstractController
     }
 
     /**
-     * Ajoute un ami à la liste des amis d'un utilisateur
+     * Ajoute un ami à la liste des amis d'un utilisateur.
      * @param Request $request
      * @param FriendRepository $friendRepository
      * @param FriendsListRepository $friendsListRepository
@@ -67,7 +67,7 @@ class FriendController extends AbstractController
     }
 
     /**
-     * Affiche les informations associées à un ami
+     * Affiche les informations associées à un ami.
      * @param Friend $friend
      * @return Response
      */
@@ -80,7 +80,7 @@ class FriendController extends AbstractController
     }
 
     /**
-     * Modifie les informations associées à un ami
+     * Modifie les informations associées à un ami.
      * @param Request $request
      * @param Friend $friend
      * @param FriendRepository $friendRepository
@@ -106,17 +106,18 @@ class FriendController extends AbstractController
     }
 
     /**
-     * Supprime un ami de la liste des amis d'un utilisateur
+     * Supprime un ami de la liste des amis d'un utilisateur.
      * @param Request $request
      * @param Friend $friend
      * @param FriendRepository $friendRepository
      * @return Response
      */
     #[Route('/{id}', name: 'app_friend_delete', methods: ['POST'])]
-    public function delete(Request $request, Friend $friend, FriendRepository $friendRepository): Response
+    public function delete(Request $request, Friend $friend, FriendRepository $friendRepository, FriendsList $friendList, FriendsListRepository $friendsListRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $friend->getId(), $request->request->get('_token'))) {
-            $friendRepository->remove($friend, true);
+        if ($this->isCsrfTokenValid('delete' . $friendList->getId(), $request->request->get('_token'))) {
+              $friendsListRepository->remove($friendList, true);
+              $friendRepository->remove($friend, true);
         }
 
         return $this->redirectToRoute('app_friend_index', [], Response::HTTP_SEE_OTHER);

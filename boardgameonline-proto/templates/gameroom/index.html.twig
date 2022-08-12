@@ -16,7 +16,7 @@
     </div>
     <div class="container mt-4  bg-dark text-light rounded">
         <p class="ms-5 fs-3 text-center">Règles de jeu:</p>
-        {{ game.rules }}</div>
+        {{ game.rules | striptags }}</div>
     <div id="toast"></div>
     <div class="mt-3 row justify-content-around">
         <!--sélectionner un ami-->

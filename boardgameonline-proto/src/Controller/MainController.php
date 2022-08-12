@@ -21,7 +21,6 @@ class MainController extends AbstractController
         $form->handleRequest($request);
         [$minPlayer, $maxPlayer] = $gameRepository->findMinMax($data);
         $games= $gameRepository->findSearch($data);
-//        dd($games);
         return $this->render('main/index.html.twig', [
             'games' => $games,
             'form' => $form->createView(),

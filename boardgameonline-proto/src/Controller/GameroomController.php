@@ -20,8 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameroomController extends AbstractController
 {
     /**
-//     * Affiche le formulaire pour la création d'une table de jeu - A modifier
-     * Affiche les informations pratiques pour le lancement de partie
+     * Affiche les informations pratiques pour le lancement de partie.
      * @param $id
      * @param GameRepository $gameRepository
      * @param GameroomRepository $gameroomRepository
@@ -32,14 +31,14 @@ class GameroomController extends AbstractController
     public function index($id, GameRepository$gameRepository, GameroomRepository $gameroomRepository, FriendRepository $friendRepository): Response
     {
         return $this->render('gameroom/index.html.twig', [
-            'game' => $gameRepository->find($id), // test
+            'game' => $gameRepository->find($id),
             'gamerooms' => $gameroomRepository->findAll(),
             'friends' => $friendRepository->findAll(),
         ]);
     }
 
     /**
-     * Créer la table de jeu pour un jeu
+     * Créer la table de jeu pour un jeu.
      * @param Request $request
      * @param Game $id
      * @param GameRepository $gameRepository
@@ -48,7 +47,6 @@ class GameroomController extends AbstractController
      * @return Response
      */
     #[Route('/{id}/new', name: 'app_gameroom_new', methods: ['GET', 'POST'], )]
-//options:
     public function new(
         Request            $request,
         Game               $id,
@@ -71,7 +69,7 @@ class GameroomController extends AbstractController
         return $this->renderForm('gameroom/new.html.twig', [
             'gameroom' => $gameroom,
             'form' => $form,
-//            'friends' => $friendRepository->findAll(),
+             'friends' => $friendRepository->findAll(),
         ]);
 
         // Email
@@ -95,10 +93,11 @@ class GameroomController extends AbstractController
     }
 
     /**
-     * Afficher la table de jeu avec les utilisateurs et invités
+     * Afficher la table de jeu avec les utilisateurs et invités.
      * @param Gameroom $gameroom
      * @return Response
      */
+//    #[Route('/{id}/{hashInvit}/show', name: 'app_gameroom_show', methods: ['GET'])]
     #[Route('/{id}/show', name: 'app_gameroom_show', methods: ['GET'])]
     public function show(Gameroom $gameroom): Response
     {
@@ -109,7 +108,7 @@ class GameroomController extends AbstractController
 
 
     /**
-     * Rendre invisible la table de jeu
+     * Rendre invisible la table de jeu.
      * @param Request $request
      * @param Gameroom $gameroom
      * @param GameroomRepository $gameroomRepository

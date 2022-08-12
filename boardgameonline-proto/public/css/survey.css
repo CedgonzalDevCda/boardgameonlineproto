@@ -1,0 +1,9 @@
+.fa-regular:hover{
+    padding: 0px;
+    cursor:pointer;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
